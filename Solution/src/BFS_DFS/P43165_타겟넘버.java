@@ -2,7 +2,7 @@ package BFS_DFS;
 
 import java.util.Stack;
 
-public class P43165{
+public class P43165_타겟넘버 {
     private static class State{
         private final int index;
         private final int acc;
