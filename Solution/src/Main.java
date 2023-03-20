@@ -130,12 +130,15 @@ public class Main {
 //}
 
 import BFS_DFS.B2583_영역구하기;
+import DP.B1149_RGB거리;
+import DP.B11726_2xn타일링;
+import DP.B11727_2xn타일링2;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        B2583_영역구하기 p = new B2583_영역구하기();
+        B1149_RGB거리 p = new B1149_RGB거리();
         p.solution();
     }
 }

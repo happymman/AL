@@ -15,7 +15,7 @@ public class B2583_영역구하기 {
     static int[] dc = {0,0,-1,1};
     static int count =0;
 
-    static int m;2
+    static int m;
     static int n;
     static int k;
     static int[][] map;
