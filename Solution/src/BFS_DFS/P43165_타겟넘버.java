@@ -33,37 +33,3 @@ public class P43165_타겟넘버 {
         return count;
     }
 }
-
-//import java.util.Stack;
-//
-//public class Solution{
-//    private class State{
-//        private int index;
-//        private int acc;
-//
-//        State(int index, int acc){
-//            this.index = index;
-//            this.acc = acc;
-//        }
-//    }
-//
-//    public int solution(int[] numbers, int target){
-//        Stack<State> s = new Stack<>();
-//
-//        int count =0;
-//        s.push(new State(0,0));
-//
-//        while(!s.empty()){
-//            State state = s.pop();
-//
-//            if(state.index == numbers.length){
-//                if(state.acc == target) count++;
-//                continue;
-//            }
-//
-//            s.push(new State(state.index+1, state.acc+numbers[state.index]));
-//            s.push(new State(state.index+1, state.acc-numbers[state.index]));
-//        }
-//        return count;
-//    }
-//}
