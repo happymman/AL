@@ -133,13 +133,14 @@ import BFS_DFS.B2583_영역구하기;
 import DP.B1149_RGB거리;
 import DP.B11726_2xn타일링;
 import DP.B11727_2xn타일링2;
+import Greedy.B11047_동전;
 import Greedy.B11399_ATM;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        B11399_ATM p = new B11399_ATM();
-        p.solution();
+        B11047_동전 p = new B11047_동전();
+        p.main(args);
     }
 }
