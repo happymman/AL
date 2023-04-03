@@ -20,15 +20,29 @@ public class P86491_최소직사각형 {
 //     }
 // }
 
-class Solution {
-    public int solution(int[][] sizes) {
-        //큰값, 작은값 구별
-        int maxWidth =0, maxHeight =0;
+//class Solution {
+//    public int solution(int[][] sizes) {
+//        //큰값, 작은값 구별
+//        int maxWidth =0, maxHeight =0;
+//
+//        for(int i=0; i<sizes.length; i++){
+//            maxWidth = Math.max(maxWidth, Math.max(sizes[i][0], sizes[i][1]));
+//            maxHeight = Math.max(maxHeight, Math.min(sizes[i][0], sizes[i][1]));
+//        }
+//        return maxWidth*maxHeight;
+//    }
+//}
 
-        for(int i=0; i<sizes.length; i++){
-            maxWidth = Math.max(maxWidth, Math.max(sizes[i][0], sizes[i][1]));
-            maxHeight = Math.max(maxHeight, Math.min(sizes[i][0], sizes[i][1]));
-        }
-        return maxWidth*maxHeight;
-    }
-}
+//public class Solution{
+//    public int solution(int[][] sizes){
+//        int max =0;
+//        int second_max =0;
+//
+//        for(int i=0;i<sizes.length;i++){
+//            max = Math.max(max, Math.max(sizes[i][0], sizes[i][1]));
+//            second_max = Math.max(second_max, Math.min(sizes[i][0], sizes[i][1]));
+//        }
+//
+//        return max*second_max;
+//    }
+//}
