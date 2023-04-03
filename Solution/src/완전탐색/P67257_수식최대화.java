@@ -3,7 +3,10 @@ package 완전탐색;
 //import java.util.List;
 //import java.util.ArrayList;
 //import java.util.StringTokenizer;
-//
+
+class P67257_수식최대화 {
+}
+
 //class P67257_수식최대화 {
 //    private static final String[][] precedences = {
 //            "*-+".split(""),
