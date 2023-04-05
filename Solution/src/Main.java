@@ -135,12 +135,13 @@ import DP.B11726_2xn타일링;
 import DP.B11727_2xn타일링2;
 import Greedy.B11047_동전;
 import Greedy.B11399_ATM;
+import 재귀.B2630_색종이만들기;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        B11047_동전 p = new B11047_동전();
+        B2630_색종이만들기 p = new B2630_색종이만들기();
         p.main(args);
     }
 }
