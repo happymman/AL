@@ -142,3 +142,30 @@ public class P42840_모의고사{
                 .toArray();
     }
 }
+
+//import java.util.stream.IntStream;
+//
+//public class Solution{
+//    private static int[][] rules = {
+//            {1,2,3,4,5},
+//            {2,1,2,3,2,4,2,5},
+//            {3,3,1,1,2,2,4,4,5,5}
+//    };
+//
+//    public int[] solution(int[] answers){
+//        int[] corrects = new int[3];
+//
+//        for(int person=0;person<3;person++){
+//            int[] rule = rules[person];
+//            for(int problem=0;problem<answers.length;problem++){
+//                if(answers[problem] == rule[problem%rule.length]) corrects[person]++;
+//            }
+//        }
+//        int max = Math.max(corrects[0], Math.max(corrects[1], corrects[2]));
+//        return IntStream.range(0,3)
+//                .filter(i-> corrects[i]==max)
+//                .map(i->i+1)
+//                .toArray();
+//
+//    }
+//}
