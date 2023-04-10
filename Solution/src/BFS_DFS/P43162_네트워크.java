@@ -130,3 +130,37 @@ public class P43162_네트워크 {
 //3.pop -> 방문, 정답검사
 //4.범위검사(테두리, 내부) -> 상태 전이
 
+//import java.util.Stack;
+//public class Solution{
+//
+//    public void visitAll(int i, int[][] computers, boolean[] isVisited){
+//        Stack<Integer> s = new Stack<>();
+//        s.push(i);
+//
+//        while(!s.isEmpty()){
+//            int c = s.pop();
+//
+//            if(isVisited[c]) continue;
+//            isVisited[c] = true;
+//
+//            for(int next =0;next<computers.length;next++){
+//                if(computers[c][next] ==0 ) continue;
+//                s.push(next);
+//            }
+//        }
+//    }
+//
+//    public int solution(int n, int[][] computers){
+//        boolean[] isVisited = new boolean[n];
+//        int count =0;
+//
+//        for(int i=0;i<n;i++){
+//            if(isVisited[i]) continue;
+//
+//            visitAll(i, computers, isVisited);
+//            count++;
+//        }
+//        return count;
+//    }
+//}
+
