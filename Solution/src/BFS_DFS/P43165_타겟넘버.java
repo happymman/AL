@@ -33,3 +33,36 @@ public class P43165_타겟넘버 {
         return count;
     }
 }
+
+//import java.util.Stack;
+//
+//public class Solution{
+//    private static class State{
+//        int sum;
+//        int idx;
+//        public State(int sum, int idx){
+//            this.sum = sum;
+//            this.idx = idx;
+//        }
+//    }
+//
+//    public int solution(int[] numbers, int target){
+//        Stack<State> s = new Stack<>();
+//        int count=0;
+//
+//        s.push(new State(0,0));
+//
+//        while(!s.isEmpty()){
+//            State state = s.pop();
+//
+//            if(state.idx == numbers.length){
+//                if (state.sum == target) count++;
+//                continue;
+//            }
+//
+//            s.push(new State(state.sum+numbers[state.idx], state.idx+1));
+//            s.push(new State(state.sum-numbers[state.idx], state.idx+1));
+//        }
+//        return count;
+//    }
+//}
