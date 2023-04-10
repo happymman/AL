@@ -1,6 +1,8 @@
 package 완전탐색;
 
+import java.io.*;
 import java.util.HashSet;
+import java.util.StringTokenizer;
 
 public class P42839_소수찾기{
     private static char[] arr;

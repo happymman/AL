@@ -135,6 +135,7 @@ import DP.B11726_2xn타일링;
 import DP.B11727_2xn타일링2;
 import Greedy.B11047_동전;
 import Greedy.B11399_ATM;
+import 완전탐색.B2503_숫자야구;
 import 재귀.B2447_별찍기10;
 import 재귀.B2630_색종이만들기;
 
@@ -142,7 +143,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        B2447_별찍기10 p = new B2447_별찍기10();
+        B2503_숫자야구 p = new B2503_숫자야구();
         p.main(args);
     }
 }
