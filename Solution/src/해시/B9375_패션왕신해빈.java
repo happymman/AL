@@ -1,4 +1,4 @@
-package 미분류;
+package 해시;
 
 import java.util.HashMap;
 import java.util.*;
