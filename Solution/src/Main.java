@@ -129,13 +129,10 @@ public class Main {
 //
 //}
 
-import 해시.B9375_패션왕신해빈;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        B9375_패션왕신해빈 p = new B9375_패션왕신해빈();
-        p.main(args);
     }
 }
