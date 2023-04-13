@@ -59,10 +59,9 @@
 //    }
 //}
 
-package 재귀;
+package 분할정복;
 
 import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;

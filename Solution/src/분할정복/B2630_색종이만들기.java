@@ -1,6 +1,5 @@
-package 재귀;
+package 분할정복;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class B2630_색종이만들기 {

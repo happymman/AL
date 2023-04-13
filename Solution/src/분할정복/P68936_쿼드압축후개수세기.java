@@ -1,4 +1,4 @@
-package 재귀;
+package 분할정복;
 
 class P68936_쿼드압축후개수세기 {
     private static int zero =0;
