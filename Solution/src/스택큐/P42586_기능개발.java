@@ -29,3 +29,29 @@ public class  P42586_기능개발{
         return Answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
+
+//import java.util.*;
+//
+//public class Solution{
+//    public int[] solution(int[] progresses, int[] speeds){
+//        Queue<Integer> q = new LinkedList<>();
+//
+//        for(int i=0;i<progresses.length;i++){
+//            int expiration = (int)Math.ceil((100.0 -progresses[i])/speeds[i]);
+//            q.add(expiration);
+//        }
+//
+//        List<Integer> works = new ArrayList<>();
+//        while(!q.isEmpty()){
+//            int day = q.poll();
+//
+//            int count =1;
+//            while(!q.isEmpty() && q.peek()<=day){
+//                count++;
+//                q.poll();
+//            }
+//            works.add(count);
+//        }
+//        return works.stream().mapToInt(Integer::intValue).toArray();
+//    }
+//}
