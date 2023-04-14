@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 class P43248_입국심사 {
     public long solution(int n, int[] times) {
-        long answer = 0;
+
         Arrays.sort(times);
         long left = 1;
         long right = (long) n * times[times.length - 1];
