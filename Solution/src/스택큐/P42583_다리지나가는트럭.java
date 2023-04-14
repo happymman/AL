@@ -2,7 +2,7 @@ package 스택큐;
 
 
 import java.util.*;
-class P42583_다리지나가능트럭 {
+class P42583_다리지나가는트럭 {
     public int solution(int bridge_length, int weight, int[] truck_weights) {
         Queue<Integer> bridge = new LinkedList<>();
         int bridgeWeight = 0;

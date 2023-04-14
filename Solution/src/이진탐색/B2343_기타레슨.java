@@ -22,7 +22,7 @@ public class B2343_기타레슨 {
         int end =0;
         for(int i=0;i<N;i++){
             A[i] = sc.nextInt();
-            if(start < A[i]) start = A[i];
+            if(start < A[i]) start = A[i]; //
             end = end+A[i];
         }
 
