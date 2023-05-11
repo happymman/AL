@@ -23,8 +23,8 @@ class P1844_게임맵최단거리 {
     public int solution(int[][] maps) {
         boolean[][] isVisited = new boolean[maps.length][maps[0].length];
         Queue<State> queue = new LinkedList<>();
-
         queue.add(new State(0,0,1));
+
         isVisited[0][0] = true;
 
         while(!queue.isEmpty()){

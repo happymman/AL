@@ -22,11 +22,45 @@ public class P86048_입실퇴실 {
             }
 
             //내보낼 수 있는 조건이 충족되면 -> 최대한 빠르게 내보낸다. - 이유 : 그래야 만날 수도 있는 사람이 count안되고, 반드시 만날 수 밖에 없는 사람만 카운트 됨.
-            while(idx<answer.length && list.contains(leave[idx])){ //떠날 사람이 방에 있어야만 떠날까말까가 가능
-                list.remove(Integer.valueOf(leave[idx++]));
+            while(idx<leave.length && list.contains(leave[idx])){ //떠날 사람이 방에 있어야만 떠날까말까가 가능
+                list.remove(Integer.valueOf(leave[idx]));
+                idx++;
             }
         }
 
         return answer;
     }
 }
+//
+//package 구현;
+//
+//        import java.util.*;
+//
+//public class P86048_입실퇴실 {
+//    public int[] solution(int[] enter, int[] leave) {
+//        int[] meet = new int[enter.length];
+//
+//        List<Integer> room = new ArrayList<>();
+//
+//        int idx =0;
+//        for(int i=0;i<enter.length;i++){
+//            room.add(enter[i]);
+//
+//            for(int j=0;j<room.size();j++){
+//                if(enter[i] == room.get(j)){ //본인
+//                    meet[enter[i]-1] = room.size()-1;
+//                }else{
+//                    meet[room.get(j)-1]++;
+//                }
+//            }
+//
+//            while(idx < leave.length-1 && room.contains(leave[idx])){
+//                room.remove(Integer.valueOf(leave[idx]));
+//                idx++;
+//            }
+//        }
+//
+//        return meet;
+//    }
+//}
+

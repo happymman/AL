@@ -16,6 +16,7 @@ public class P42885_구명보트{
             count++;
         }
         if(i==j) count++;
-        return count++;
+
+        return count;
     }
 }
