@@ -1,4 +1,4 @@
-package 이진트리;
+package 세그먼트트리;
 
 import java.io.BufferedReader;
 import java.io.IOException;
