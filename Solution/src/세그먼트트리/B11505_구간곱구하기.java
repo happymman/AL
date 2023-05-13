@@ -74,7 +74,6 @@ public class B11505_구간곱구하기 {
     private static void changeValue(int index, long newValue){ //newValue = 0
         //이전값을 다 나눠주고
         int i=index;
-
         tree[i] = newValue;
         i=i/2;
         while(i!=0){
