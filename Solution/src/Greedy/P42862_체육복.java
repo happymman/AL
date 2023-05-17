@@ -35,3 +35,39 @@ public class P42862_체육복{
         return n-count;
     }
 }
+
+//import java.util.Arrays;
+//
+//public class Solution{
+//    public int solution(int n,int[] lost, int[] reserve){
+//        int[] clothes = new int[n];
+//        Arrays.fill(clothes,1);
+//        for(int i=0;i<lost.length;i++){
+//            clothes[lost[i]-1] --;
+//        }
+//
+//        for(int i=0;i<reserve.length;i++){
+//            clothes[reserve[i]-1] ++;
+//        }
+//
+//        for(int i=0;i<clothes.length;i++){
+//            if(clothes[i] == 0){
+//                if(i-1>=0 && clothes[i-1] ==2){
+//                    clothes[i-1]--;
+//                    clothes[i]++;
+//                }else{
+//                    if(i+1<clothes.length && clothes[i+1] ==2){
+//                        clothes[i+1]--;
+//                        clothes[i]++;
+//                    }
+//                }
+//            }
+//        }
+//
+//        int count=0;
+//        for(int i=0;i<clothes.length;i++){
+//            if(clothes[i] >= 1) count++;
+//        }
+//        return count;
+//    }
+//}
