@@ -50,4 +50,3 @@ public class P42885_구명보트{
         int answer = s.solution(people, limit);
     }
 }
-
