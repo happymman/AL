@@ -99,7 +99,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class B2042_구간합구하기3 {
+public class B2042_구간합구하기 {
 
     private static long[] tree;
     private static int leafNodeStartIndex;

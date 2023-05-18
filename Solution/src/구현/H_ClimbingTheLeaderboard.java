@@ -1,18 +1,12 @@
 package 구현;
 
 import java.io.*;
-        import java.math.*;
-        import java.security.*;
-        import java.text.*;
-        import java.util.*;
-        import java.util.concurrent.*;
-        import java.util.function.*;
-        import java.util.regex.*;
-        import java.util.stream.*;
+import java.util.*;
+import java.util.stream.*;
         import static java.util.stream.Collectors.joining;
         import static java.util.stream.Collectors.toList;
 
-class Result {
+class H_ClimbingTheLeaderboard_Result {
 
     /*
      * Complete the 'climbingLeaderboard' function below.
@@ -62,7 +56,7 @@ public class H_ClimbingTheLeaderboard {
                 .map(Integer::parseInt)
                 .collect(toList());
 
-        List<Integer> result = Result.climbingLeaderboard(ranked, player);
+        List<Integer> result = H_ClimbingTheLeaderboard_Result.climbingLeaderboard(ranked, player);
 
         bufferedWriter.write(
                 result.stream()
