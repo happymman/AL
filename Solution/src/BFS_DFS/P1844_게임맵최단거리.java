@@ -99,3 +99,50 @@ class P1844_게임맵최단거리 {
 //        return -1;
 //    }
 //}
+
+//import java.util.*;
+//
+//public class Solution{
+//    private class State{
+//        int x;
+//        int y;
+//        int step;
+//
+//        public State(int x, int y, int step){
+//            this.x = x;
+//            this.y = y;
+//            this.step = step;
+//        }
+//    }
+//
+//    private static int[] dx = {0,1,0,-1};
+//    private static int[] dy = {-1,0,1,0};
+//
+//
+//    public int solution(int[][] maps){
+//        Queue<State> q = new LinkedList<>();
+//        q.add(new State(0,0,1));
+//        boolean[][] isVisited = new boolean[maps.length][maps[0].length];
+//
+//        while(!q.isEmpty()){
+//            State state = q.poll();
+//
+//            if(state.y == maps.length-1 && state.x ==maps[0].length-1){
+//                return state.step;
+//            }
+//
+//            for(int i=0;i<4;i++){
+//                int nx = state.x+dx[i];
+//                int ny = state.y+dy[i];
+//
+//                if(nx<0 || nx>=maps[0].length ||ny<0 || ny>=maps.length) continue;
+//                if(maps[ny][nx] ==0) continue;
+//                if(isVisited[ny][nx]) continue;
+//                isVisited[ny][nx] = true;
+//
+//                q.add(new State(nx, ny, state.step+1));
+//            }
+//        }
+//        return -1;
+//    }
+//}
