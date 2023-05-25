@@ -77,13 +77,13 @@ public class B2343_기타레슨 {
 
             int sum=0;
             for(int i=0;i<N;i++){ //모든 레슨 배열 순회하고
-                if(sum+A[i] > mid){ //초과할때
+                if(sum+A[i] > mid){ //초과할때만 count++하고
                     count++;
                     sum=0;
                 }
                 sum += A[i];
             }
-            if(sum!=0) count++;
+            if(sum!=0) count++; //남아있으면 count++
 
             //못담으면
             if(count > M){ //ex : 2
