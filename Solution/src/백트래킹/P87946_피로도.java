@@ -42,3 +42,26 @@ class Solution {
     }
 
 }
+
+//public class Solution{
+//    private static boolean[] isVisited;
+//    private static int max =0;
+//
+//    public int solution(int k, int[][] dungeons){
+//        isVisited = new boolean[dungeons.length];
+//        dfs(k,0,dungeons);
+//        return max;
+//    }
+//
+//    private static void dfs(int currentFatigue, int visitCount, int[][] dungeons){
+//        for(int i=0;i<isVisited.length;i++){
+//            if(isVisited[i]) continue;
+//            if(currentFatigue < dungeons[i][0]) continue;
+//            isVisited[i] = true;
+//            dfs(currentFatigue-dungeons[i][1], visitCount+1, dungeons);
+//            isVisited[i] = false;
+//        }
+//
+//        if(max<visitCount) max = visitCount;
+//    }
+//}
