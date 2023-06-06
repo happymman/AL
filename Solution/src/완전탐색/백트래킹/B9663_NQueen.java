@@ -1,4 +1,4 @@
-package 백트래킹;
+package 완전탐색.백트래킹;
 //
 //import java.util.Scanner;
 //

@@ -1,9 +1,9 @@
-package 백트래킹;
-//
+package 완전탐색.백트래킹;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-//
-//public class B15650_N과M2 {
+
+//public class B15649_N과M1 {
 //
 //    static boolean[] isVisited;
 //    static ArrayList<String> answers = new ArrayList<>();
@@ -19,14 +19,14 @@ import java.util.Scanner;
 //        isVisited = new boolean[N+1];
 //
 //        //BT(0, "")돌기기
-//        BT(0, "", 0);
+//        BT(0, "");
 //
 //        for(String answer : answers){
 //            System.out.println(answer);
 //        }
 //    }
 //
-//    static void BT(int index, String letter, int lastNum){
+//    static void BT(int index, String letter){
 //        //길이가 M이면 출력배열에 추가하고 return
 //        if(index == M){
 //            answers.add(letter);
@@ -35,13 +35,13 @@ import java.util.Scanner;
 //
 //        //for문으로 방문배열 돌면서 하나 선택
 //        for(int i=1;i<=N;i++){
-//            if(isVisited[i] || i<lastNum) continue;
+//            if(isVisited[i]) continue;
 //            isVisited[i] = true;
 //
 //            if(index == 0){
-//                BT(index+1, letter+i, i);
+//                BT(index+1, letter+i);
 //            }else{
-//                BT(index+1, letter+" "+i, i);
+//                BT(index+1, letter+" "+i);
 //            }
 //            isVisited[i] = false;
 //        }
@@ -51,7 +51,7 @@ import java.util.Scanner;
 //    }
 //}
 
-public class B15650_N과M2 {
+public class B15649_N과M1 {
 
     static int[] arr;
     static int M;
@@ -68,24 +68,23 @@ public class B15650_N과M2 {
             arr[i] = i+1;
         }
 
-        BT(0, "", 0);
+        BT(0, "");
     }
 
-    static void BT(int length, String str, int lastNumber){
+    static void BT(int length, String str){
         if(length == M){
             System.out.println(str);
             return;
         }
 
         for(int i=0;i<N;i++){
-            if(lastNumber >= arr[i]) continue;
             if(isVisited[i]) continue;
             isVisited[i] = true;
 
             if(length ==0){
-                BT(length+1, str+arr[i], arr[i]);
+                BT(length+1, str+arr[i]);
             }else{
-                BT(length+1, str+" "+arr[i], arr[i]);
+                BT(length+1, str+" "+arr[i]);
             }
             isVisited[i] = false;
 

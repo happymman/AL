@@ -1,4 +1,4 @@
-package 백트래킹;
+package 완전탐색.DFS;
 import java.util.*;
 
 public class P86971_전력망둘로나누기 {
