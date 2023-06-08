@@ -106,3 +106,56 @@ class P86971_전력망둘로나누기Solution {
 //        }
 //    }
 //}
+
+//3회 풀이
+//import java.util.*;
+//
+//public class Solution{
+//
+//    private static ArrayList<Integer>[] tree;
+//    private static boolean[] isVisited;
+//
+//    public int solution(int n, int[][] wires){
+//
+//        tree = new ArrayList[n+1];
+//
+//        for(int i=1;i<tree.length;i++){
+//            tree[i] = new ArrayList<>();
+//        }
+//
+//        for(int[] wire : wires){
+//            tree[wire[0]].add(wire[1]);
+//            tree[wire[1]].add(wire[0]);
+//        }
+//
+//        int min=Integer.MAX_VALUE;
+//        for(int[] wire : wires){
+//            isVisited = new boolean[n+1];
+//            Set<Integer> nodeSet = new HashSet<>();
+//            nodeSet.add(wire[0]);
+//            nodeSet.add(wire[1]);
+//
+//            dfs(1, nodeSet);
+//
+//            int visitCount =0;
+//            for(int i=0;i<isVisited.length;i++){
+//                if(isVisited[i]) visitCount++;
+//            }
+//            int diff = Math.abs((n-visitCount) - visitCount);
+//            if(min>diff) min= diff;
+//
+//        }
+//        return min;
+//    }
+//
+//    private static void dfs(int v1, Set<Integer> nodeSet){
+//        isVisited[v1] = true;
+//
+//        for(int v2 : tree[v1]){
+//            if(isVisited[v2]) continue;
+//            if(nodeSet.contains(v1)&&nodeSet.contains(v2)) continue;
+//
+//            dfs(v2,nodeSet);
+//        }
+//    }
+//}
