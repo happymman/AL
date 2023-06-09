@@ -1,5 +1,5 @@
-package Greedy;
-import java.util.*;
+package 그리디;
+
 public class P42860_조이스틱 {
     public static void main(String[] args) {
         P42860_조이스틱_Solution s = new P42860_조이스틱_Solution();

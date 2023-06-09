@@ -1,4 +1,4 @@
-package Greedy;
+package 그리디;
 
 import java.util.Stack;
 import java.util.stream.Collectors;

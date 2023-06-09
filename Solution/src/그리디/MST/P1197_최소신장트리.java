@@ -1,4 +1,4 @@
-package Greedy.MST;
+package 그리디.MST;
 
 import java.util.PriorityQueue;
 import java.util.Scanner;

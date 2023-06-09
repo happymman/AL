@@ -1,4 +1,4 @@
-package Greedy;
+package 그리디;
 
 import java.util.Arrays;
 
@@ -21,8 +21,6 @@ import java.util.Arrays;
 //    }
 //}
 
-import java.util.Arrays;
-        import java.util.Collections;
 
 class Solution{
     public int solution(int[] people, int limit){
