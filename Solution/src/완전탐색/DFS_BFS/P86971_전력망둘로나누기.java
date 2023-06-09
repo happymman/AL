@@ -1,4 +1,4 @@
-package 완전탐색.DFS;
+package 완전탐색.DFS_BFS;
 import java.util.*;
 
 public class P86971_전력망둘로나누기 {
