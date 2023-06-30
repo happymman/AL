@@ -71,3 +71,73 @@ public class P87694_아이템줍기 {
         return min/2;
     }
 }
+
+//2차 풀이
+//import java.util.*;
+//
+//class Solution {
+//
+//    private static class Node{
+//        int x;
+//        int y;
+//        int count;
+//
+//        Node(int x, int y, int count){
+//            this.x=x;
+//            this.y=y;
+//            this.count=count;
+//        }
+//    }
+//
+//    private static int[] dx={0,1,0,-1};
+//    private static int[] dy={-1,0,1,0};
+//
+//    public int solution(int[][] rectangle, int characterX, int characterY, int itemX, int itemY){
+//        Boolean[][] map = new Boolean[102][102];
+//
+//        for(int[] rec : rectangle){
+//            for(int i=0;i<4;i++){
+//                rec[i] *=2;
+//            }
+//
+//            for(int x=rec[0]; x<=rec[2]; x++){
+//                for(int y=rec[1]; y<=rec[3]; y++){
+//                    map[y][x] = (x==rec[0] || x==rec[2] || y==rec[1] || y==rec[3]) && map[y][x] != Boolean.FALSE;
+//                }
+//            }
+//        }
+//
+//        characterX *=2;
+//        characterY *=2;
+//        itemX *=2;
+//        itemY *=2;
+//
+//        int min = Integer.MAX_VALUE;
+//        Queue<Node> q = new LinkedList<>();
+//        q.add(new Node(characterX, characterY, 0));
+//        map[characterY][characterX] = Boolean.FALSE;
+//
+//        while(!q.isEmpty()){
+//            Node now = q.poll();
+//
+//            if(now.x==itemX && now.y==itemY && now.count < min){
+//                min = now.count;
+//            }
+//
+//            for(int i=0;i<4;i++){
+//                int ny=now.y+dy[i];
+//                int nx=now.x+dx[i];
+//
+//                if(ny < 2 || ny>102 || nx<2 || nx>102) continue;
+//                if(map[ny][nx] != Boolean.TRUE) continue;
+//
+//                map[ny][nx] = Boolean.FALSE;
+//                q.add(new Node(nx, ny, now.count+1));
+//            }
+//
+//        }
+//
+//        return min/2;
+//    }
+//
+//}
