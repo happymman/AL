@@ -133,48 +133,96 @@ package 완전탐색.백트래킹;
 //    }
 //}
 
+//import java.util.Scanner;
+//
+//public class B9663_NQueen {
+//
+//    public static int[] arr;
+//    public static int N;
+//    public static int count = 0;
+//
+//    public static void main(String[] args) {
+//        Scanner in = new Scanner(System.in);
+//        N = in.nextInt();
+//        arr = new int[N];
+//
+//        nQueen(0);
+//        System.out.println(count);
+//    }
+//
+//    public static void nQueen(int depth) {
+//        //depth가 N이면 count++, return
+//        if(depth == N){
+//            count++;
+//            return;
+//        }
+//        //for문 arr[depth] = 0,1,2,3 하나씩 공급
+//        for(int i=0;i<N;i++){
+//            arr[depth] = i;
+//            if(Possibility(depth)){
+//                nQueen(depth+1);//OK이면 nQueen(depth+1);
+//            }
+//        }
+//    }
+//    public static boolean Possibility(int depth) { //depth열과 depth이전열의 퀸위치를 확인하면서 가능여부 확인
+//        //for문으로 depth이전열 i열과 확인
+//        for(int i=0;i<depth;i++){
+//            //같은행에 위치 했는지
+//            if(arr[i]==arr[depth]) return false;
+//
+//            //대각에 위치 했는지
+//            if(Math.abs(i-depth) == Math.abs(arr[i]-arr[depth])) return false;
+//        }
+//        //아니라면 return true;
+//        return true;
+//    }
+//}
+
+//2차 풀이
 import java.util.Scanner;
 
 public class B9663_NQueen {
 
-    public static int[] arr;
-    public static int N;
-    public static int count = 0;
+    private static int[] queens;
+    private static int N;
+    private static int count=0;
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        N = in.nextInt();
-        arr = new int[N];
 
-        nQueen(0);
+        Scanner sc = new Scanner(System.in);
+        N = sc.nextInt();
+        queens = new int[N];
+
+        bt(0);
+
         System.out.println(count);
     }
 
-    public static void nQueen(int depth) {
-        //depth가 N이면 count++, return
-        if(depth == N){
+    public static void bt(int col){
+
+        if (col == N){
             count++;
             return;
         }
-        //for문 arr[depth] = 0,1,2,3 하나씩 공급
-        for(int i=0;i<N;i++){
-            arr[depth] = i;
-            if(Possibility(depth)){
-                nQueen(depth+1);//OK이면 nQueen(depth+1);
-            }
-        }
-    }
-    public static boolean Possibility(int depth) { //depth열과 depth이전열의 퀸위치를 확인하면서 가능여부 확인
-        //for문으로 depth이전열 i열과 확인
-        for(int i=0;i<depth;i++){
-            //같은행에 위치 했는지
-            if(arr[i]==arr[depth]) return false;
 
-            //대각에 위치 했는지
-            if(Math.abs(i-depth) == Math.abs(arr[i]-arr[depth])) return false;
+        for(int i=0;i<N;i++){
+            queens[col] = i;
+            if(!canLocated(col)) continue;
+
+            bt(col+1);
         }
-        //아니라면 return true;
+
+    }
+
+    public static boolean canLocated(int col){
+
+        for(int queen =0;queen<col;queen++){
+           //대각
+           if(Math.abs(queens[queen] - queens[col]) == Math.abs(queen-col)) return false;
+
+           //행같음
+           if(queens[queen] == queens[col]) return false;
+        }
         return true;
     }
 }
-
