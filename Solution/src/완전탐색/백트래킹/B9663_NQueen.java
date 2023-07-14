@@ -216,12 +216,11 @@ public class B9663_NQueen {
 
     public static boolean canLocated(int col){
 
-        for(int queen =0;queen<col;queen++){
+        for(int i=0;i<col;i++){
            //대각
-           if(Math.abs(queens[queen] - queens[col]) == Math.abs(queen-col)) return false;
-
+           if(Math.abs(queens[i] - queens[col]) == Math.abs(i-col)) return false;
            //행같음
-           if(queens[queen] == queens[col]) return false;
+           if(queens[i] == queens[col]) return false;
         }
         return true;
     }
