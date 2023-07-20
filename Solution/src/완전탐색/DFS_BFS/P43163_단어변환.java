@@ -37,6 +37,7 @@ class P43163_단어변환 {
 
             if(state.word.equals(target))
                 return state.step;
+
             for(int i=0;i<words.length;i++){
                 String next = words[i];
 
