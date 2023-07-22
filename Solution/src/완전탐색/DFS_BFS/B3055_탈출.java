@@ -38,6 +38,7 @@ public class B3055_탈출 {
 
     public static void main(String[] args) throws IOException {
 
+        /*
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
@@ -45,6 +46,11 @@ public class B3055_탈출 {
         //R, C입력받기
         int R = Integer.parseInt(st.nextToken());
         int C = Integer.parseInt(st.nextToken());
+        */
+
+        Scanner sc = new Scanner(System.in);
+        int R = sc.nextInt();
+        int C = sc.nextInt();
 
         isGosuemVisited = new boolean[R][C];
         isWaterVisited = new boolean[R][C];
@@ -53,6 +59,7 @@ public class B3055_탈출 {
         int[] start = new int[2];
         List<int[]> waters = new ArrayList<>();
 
+        /*
         for(int i=0;i<R;i++){
             st=new StringTokenizer(br.readLine());
             String line = st.nextToken();
@@ -70,6 +77,27 @@ public class B3055_탈출 {
                     isWaterVisited[i][j] = true;
                     isGosuemVisited[i][j] = true;
                 }else if(c == '*'){
+                    int[] water = {i,j};
+                    waters.add(water);
+                }
+            }
+        }
+        */
+
+        for(int i=0;i<R;i++){
+            for(int j=0;j<C;j++){
+                String s = sc.next();
+                if(s.equals("D")){
+                    target[0] = i;
+                    target[1] = j;
+                    isWaterVisited[i][j] = true;
+                }else if(s.equals("S")){
+                    start[0] = i;
+                    start[1] = j;
+                }else if(s.equals("X")){
+                    isWaterVisited[i][j] = true;
+                    isGosuemVisited[i][j] = true;
+                }else if(s.equals("*")){
                     int[] water = {i,j};
                     waters.add(water);
                 }
