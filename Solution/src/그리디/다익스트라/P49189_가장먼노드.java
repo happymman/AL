@@ -20,10 +20,10 @@ class P49189_가장먼노드Solution {
     static int[] distance;
     static boolean[] isVisited;
 
-    static class Edge{
+    static class Node {
         int vertex;
         int value;
-        Edge(int vertex, int value){
+        Node(int vertex, int value){
             this.vertex = vertex;
             this.value = value;
         }
@@ -44,10 +44,10 @@ class P49189_가장먼노드Solution {
         }
 
         Queue q = new LinkedList<>();
-        q.add(new Edge(1,0));
+        q.add(new Node(1,0));
 
         while(!q.isEmpty()){
-            Edge now = (Edge)q.poll();
+            Node now = (Node)q.poll();
             int c_v = now.vertex;
 
             if(isVisited[c_v]) continue;
@@ -57,7 +57,7 @@ class P49189_가장먼노드Solution {
                 if(arr[c_v][adjNode]){
                     if(distance[adjNode] > 1 + now.value){
                         distance[adjNode] = 1+now.value;
-                        q.add(new Edge(adjNode, now.value+1));
+                        q.add(new Node(adjNode, now.value+1));
                     }
                 }
             }
