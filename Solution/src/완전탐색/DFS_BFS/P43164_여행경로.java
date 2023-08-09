@@ -23,8 +23,8 @@ public class P43164_여행경로{
         for(int i=0;i<tickets.length;i++){
             if(!tickets[i][0].equals(start)) continue;
             if(isVisited[i]) continue;
-
             isVisited[i] = true;
+
             dfs(tickets[i][1], route+" "+tickets[i][1], tickets, count+1);
             isVisited[i] = false;
         }
