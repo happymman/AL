@@ -18,16 +18,16 @@ class P72412_순위검색_Solution {
 
         int[] people = new int[queries.length];
 
-        for(String info : infos){
+        for(String info : infos){ //시간복잡도 : N*O(ElogV)  - N:5만, E:16개(상수), V:16개노드(상수) -> N
             String[] infoItems = info.split(" ");
             DFS("", 0, infoItems);
         }
 
-        for(List<Integer> personList : infoMap.values()){
+        for(List<Integer> personList : infoMap.values()){ //시간복잡도 : 4*3*3*3*N(5만)
             Collections.sort(personList);
         }
 
-        for(int i=0;i<queries.length;i++){
+        for(int i=0;i<queries.length;i++){ //시간복잡도 : N(10만:쿼리최대개수)*logN(5만:item최대개수)
             String query = queries[i];
             String[] queryItmes = query.split(" and "); //결과 : java,backend,junior,pizza 100
 
@@ -70,18 +70,20 @@ class P72412_순위검색_Solution {
     }
 
     static int binarySearch(List<Integer> personList, int score){
-        int left=0;
-        int right=personList.size()-1;
+        int left=0; //탐색범위 최솟값 설정
+        int right=personList.size()-1; //탐색범위 최댓값 설정
 
         while(left<=right){
             int mid = (left+right)/2;
 
             if(personList.get(mid) >= score){ //조건충족
-                right = mid-1;
+                right = mid-1; //right오른쪽범위는 조건충족범위(while문 이후)
             }else{
-                left = mid+1;
+                left = mid+1; //left왼쪽 범위는 조건불충족범위(while문 이후)
             }
         }
+        //while이 끝나는시점은 left=right에서 left=right+1이 되는 시점
+        //while문이후 right오른쪽범위는 조건충족범위이니, left는 조건충족 최솟값
         return left;
     }
 }

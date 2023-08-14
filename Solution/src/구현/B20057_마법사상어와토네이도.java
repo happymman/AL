@@ -280,106 +280,199 @@ package 구현;
 //
 //}
 
-import java.io.BufferedReader;
-        import java.io.BufferedWriter;
-        import java.io.InputStreamReader;
-        import java.io.OutputStreamWriter;
-        import java.util.StringTokenizer;
+//import java.util.Scanner;
+//
+//public class B20057_마법사상어와토네이도 {
+//
+//    static int N;
+//    static int[][] map;
+//    static int outSand=0;
+//
+//    private static int[] dx = {0,1,0,-1};
+//    private static int[] dy = {-1,0,1,0};
+//
+//    private static int[][] dsx = {{-1,1,-2,2,-1,1,-1,1,0},{-1,-1,0,0,0,0,1,1,2},{-1,1,-2,2,-1,1,-1,1,0},{1,1,0,0,0,0,-1,-1,-2}};
+//    private static int[][] dsy = {{1,1,0,0,0,0,-1,-1,-2},{-1,1,-2,2,-1,1,-1,1,0},{-1,-1,0,0,0,0,1,1,2},{-1,1,-2,2,-1,1,-1,1,0}};
+//    private static int[] dc = {1,1,2,2};
+//    private static double[] ratio = {0.01, 0.01, 0.02, 0.02, 0.07, 0.07, 0.1, 0.1, 0.05 };
+//
+//
+//    public static void main(String[] args) {
+//
+//        //N입력 받기
+//        Scanner sc = new Scanner(System.in);
+//        N = sc.nextInt();
+//        map = new int[N][N];
+//
+//        //map입력 받기
+//        for(int r=0;r<N;r++){
+//            for(int c=0;c<N;c++){
+//                map[r][c] = sc.nextInt();
+//            }
+//        }
+//
+//        tonado(N/2, N/2);
+//        //outSand 출력
+//        System.out.println(outSand);
+//
+//    }
+//
+//
+//    static void tonado(int row, int col) {
+//
+//        //현재좌표 설정
+//        int currentX = row;
+//        int currentY = col;
+//
+//        int nextX;
+//        int nextY;
+//
+//        while (true) {
+//            for (int direction = 0; direction < 4; direction++) {
+//                for (int j = 0; j < dc[direction]; j++) { //j번 반복
+//
+//                    if (currentX == 0 && currentY == 0) return; // 이유 : - <- 작동까지했을때가 다음좌표 1,1로 설정, 그 이후에
+//
+//                    //nextX, nextY 설정 by dy, dx
+//                    nextX = currentX + dx[direction];
+//                    nextY = currentY + dy[direction];
+//
+//                    int sand = map[nextX][nextY]; //다음칸 모래이식
+//                    map[nextX][nextY] = 0;
+//                    int spreadTotal = 0;
+//
+//                    for (int spread = 0; spread < 9; spread++) {
+//                        int spreadX = nextX + dsx[direction][spread];
+//                        int spreadY = nextY + dsy[direction][spread];
+//
+//                        if (spreadX >= 0 && spreadX < N && spreadY >= 0 && spreadY < N) {
+//                            map[spreadX][spreadY] += (int) (sand * ratio[spread]);
+//                        } else { //범위밖
+//                            outSand += (int) (sand * ratio[spread]);
+//                        }
+//
+//                        //spreadTotal 적립
+//                        spreadTotal += (int) (sand * ratio[spread]);
+//                    }
+//
+//                    //알파 좌표 설정
+//                    int alphaX = nextX + dx[direction];
+//                    int alphaY = nextY + dy[direction];
+//
+//                    //알파 좌표 범위안
+//                    if (alphaX >= 0 && alphaX < N && alphaY >= 0 && alphaY < N) {
+//                        map[alphaX][alphaY] += sand - spreadTotal;
+//                    } else { //범위밖
+//                        outSand += sand - spreadTotal;
+//                    }
+//
+//                    currentX = nextX;
+//                    currentY = nextY;
+//                }
+//            }
+//
+//            //dc +2씩 더해주기
+//            for (int i = 0; i < 4; i++) {
+//                dc[i] += 2;
+//            }
+//        }
+//    }
+//}
 
 import java.util.Scanner;
 
 public class B20057_마법사상어와토네이도 {
 
+    static int[] dc = {1,1,2,2};
+    static int[] dx = {0,1,0,-1};
+    static int[] dy = {-1,0,1,0};
+    static int[][] dsx = {{-1,1,-2,2,-1,1,-1,1,0},
+            {0,0,1,1,1,1,2,2,3},
+            {-1,1,-2,2,-1,1,-1,1,0},
+            {0,0,-1,-1,-1,-1,-2,-2,-3}};
+    static int[][] dsy = {{0,0,-1,-1,-1,-1,-2,-2,-3},
+            {-1,1,-2,2,-1,1,-1,1,0},
+            {0,0,1,1,1,1,2,2,3},
+            {-1,1,-2,2,-1,1,-1,1,0}};
+    static int[] ratio = {1,1,2,2,7,7,10,10,5};
+
+    static int[][] sand;
     static int N;
-    static int[][] map;
     static int outSand=0;
-
-    private static int[] dx = {0,1,0,-1};
-    private static int[] dy = {-1,0,1,0};
-
-    private static int[][] dsx = {{-1,1,-2,2,-1,1,-1,1,0},{-1,-1,0,0,0,0,1,1,2},{-1,1,-2,2,-1,1,-1,1,0},{1,1,0,0,0,0,-1,-1,-2}};
-    private static int[][] dsy = {{1,1,0,0,0,0,-1,-1,-2},{-1,1,-2,2,-1,1,-1,1,0},{-1,-1,0,0,0,0,1,1,2},{-1,1,-2,2,-1,1,-1,1,0}};
-    private static int[] dc = {1,1,2,2};
-    private static double[] ratio = {0.01, 0.01, 0.02, 0.02, 0.07, 0.07, 0.1, 0.1, 0.05 };
-
 
     public static void main(String[] args) {
 
-        //N입력 받기
+        //N입력받기
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
-        map = new int[N][N];
-
-        //map입력 받기
-        for(int r=0;r<N;r++){
-            for(int c=0;c<N;c++){
-                map[r][c] = sc.nextInt();
+        sand = new int[N][N];
+        //모래판 입력받기
+        for(int i=0;i<N;i++) {
+            for (int j = 0; j < N; j++) {
+                sand[i][j] = sc.nextInt();
             }
         }
 
         tonado(N/2, N/2);
+
         //outSand 출력
         System.out.println(outSand);
 
     }
 
+    static void tonado(int startR, int startC){
 
-    static void tonado(int row, int col) {
+        int currentR = startR;
+        int currentC = startC;
 
-        //현재좌표 설정
-        int currentX = row;
-        int currentY = col;
+        while(true) {
+            for (int i = 0; i < 4; i++) {
+                for (int rCount = 0; rCount < dc[i]; rCount++) {
+                    //종료조건
+                    if (currentR == 0 && currentC == 0) return; //종료
 
-        int nextX;
-        int nextY;
+                    //이동칸 좌표구하기
+                    int nextR = currentR + dx[i];
+                    int nextC = currentC + dy[i];
 
-        while (true) {
-            for (int direction = 0; direction < 4; direction++) {
-                for (int j = 0; j < dc[direction]; j++) { //j번 반복
+                    //이동칸 모래 복사
+                    int targetSand = sand[nextR][nextC];
+                    int moveSandSum = 0;
+                    for (int j = 0; j < 9; j++) {
+                        //모래비율 배열 이용해서 이동시킬 모래양 구하기
+                        int moveSand = (targetSand * ratio[j]) / 100;
+                        moveSandSum += moveSand;
 
-                    if (currentX == 0 && currentY == 0) return; // 이유 : - <- 작동까지했을때가 다음좌표 1,1로 설정, 그 이후에
-
-                    //nextX, nextY 설정 by dy, dx
-                    nextX = currentX + dx[direction];
-                    nextY = currentY + dy[direction];
-
-                    int sand = map[nextX][nextY]; //다음칸 모래이식
-                    map[nextX][nextY] = 0;
-                    int spreadTotal = 0;
-
-                    for (int spread = 0; spread < 9; spread++) {
-                        int spreadX = nextX + dsx[direction][spread];
-                        int spreadY = nextY + dsy[direction][spread];
-
-                        if (spreadX >= 0 && spreadX < N && spreadY >= 0 && spreadY < N) {
-                            map[spreadX][spreadY] += (int) (sand * ratio[spread]);
-                        } else { //범위밖
-                            outSand += (int) (sand * ratio[spread]);
+                        //방향배열 이용해서 목표모래지점 좌표구하기
+                        int nr = currentR + dsx[i][j];
+                        int nc = currentC + dsy[i][j];
+                        if (nr >= 0 && nr < N && nc >= 0 && nc < N) { //범위 안벗어나면
+                            sand[nr][nc] += moveSand; //모래이동시키기
+                        } else {
+                            outSand += moveSand; //벗어난모래양+
                         }
+                    }
+                    int restSand = targetSand - moveSandSum; //남은모래양 구하기
 
-                        //spreadTotal 적립
-                        spreadTotal += (int) (sand * ratio[spread]);
+                    int alphaR = nextR + dx[i];
+                    int alphaC = nextC + dy[i];
+
+                    //범위 안벗어나면
+                    if (alphaR >= 0 && alphaR < N && alphaC >= 0 && alphaC < N) {
+                        //방향배열 이용해서 모래이동시키기(알파)
+                        sand[alphaR][alphaC] += restSand;
+                    } else {
+                        outSand += restSand;
                     }
 
-                    //알파 좌표 설정
-                    int alphaX = nextX + dx[direction];
-                    int alphaY = nextY + dy[direction];
-
-                    //알파 좌표 범위안
-                    if (alphaX >= 0 && alphaX < N && alphaY >= 0 && alphaY < N) {
-                        map[alphaX][alphaY] += sand - spreadTotal;
-                    } else { //범위밖
-                        outSand += sand - spreadTotal;
-                    }
-
-                    currentX = nextX;
-                    currentY = nextY;
+                    //이동
+                    currentR = nextR;
+                    currentC = nextC;
                 }
             }
 
-            //dc +2씩 더해주기
             for (int i = 0; i < 4; i++) {
-                dc[i] += 2;
+                dc[i] += 2;//이동횟수 배열 업데이트
             }
         }
     }
