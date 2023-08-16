@@ -117,3 +117,46 @@ public class P150370_개인정보수집유효기간 {
 //        return false; //없어도 되는
 //    }
 //}
+
+class P150370_개인정보수집유효기간_Solution {
+    static Map<String, Integer> termsMap = new HashMap<>();
+
+    public int[] solution(String todayStr, String[] terms, String[] privacies) {
+
+        int todayDate = getDate(todayStr); //todayStr을 파싱해서 몇day인지 return(일 : 최소단위)
+
+        for(String term : terms){
+            termsMap.put(term.split(" ")[0], Integer.parseInt(term.split(" ")[1]));
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for(int i=0;i<privacies.length;i++){
+            String privacy = privacies[i];
+
+            //시작날짜 구하기
+            String testDateStr = privacy.split(" ")[0];
+            String type = privacy.split(" ")[1];
+
+            int testDate = getDate(testDateStr);
+            int valid = termsMap.get(type); //유효기간(월단위)구하기
+
+            testDate = testDate+valid*28-1;
+
+            //유효여부 확인
+            if(todayDate > testDate){
+                result.add(i+1);
+            }
+        }
+        return result.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    static int getDate(String date){
+        int year = Integer.parseInt(date.split("\\.")[0]);
+        int month = Integer.parseInt(date.split("\\.")[1]);
+        int day = Integer.parseInt(date.split("\\.")[2]);
+
+        int totalDay = year *28*12+month*28+day;
+        return totalDay;
+    }
+
+}
