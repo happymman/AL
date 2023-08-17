@@ -160,3 +160,52 @@ class P150370_개인정보수집유효기간_Solution {
     }
 
 }
+
+/*
+2차 풀이
+
+import java.util.*;
+
+class Solution {
+    static Map<String, Integer> terms = new HashMap<>();
+    public int[] solution(String todayStr, String[] termsStr, String[] privacies) {
+        //terms 해시맵 등록
+        for(String termStr : termsStr){
+            String key = termStr.split(" ")[0];
+            int value = Integer.parseInt(termStr.split(" ")[1]);
+            terms.put(key, value);
+        }
+
+        //todayStr -> day로 변환
+        int today = getDate(todayStr);
+
+        List<Integer> answer = new ArrayList<>();
+
+        for(int i=0;i<privacies.length;i++){
+            String privacy = privacies[i];
+
+            //testStr -> day로 변환
+            int testDay = getDate(privacy.split(" ")[0]);
+
+            //약관 terms에서 찾아서 -> testDay+28*month-1
+            int valid = terms.get(privacy.split(" ")[1]);
+            testDay = testDay+28*valid-1;
+
+            if(testDay < today){
+                answer.add(i+1);
+            }
+        }
+
+        return answer.stream().mapToInt(Integer::intValue).toArray();
+
+    }
+
+    static int getDate(String dateStr){
+        int year = Integer.parseInt(dateStr.split("\\.")[0]);
+        int month = Integer.parseInt(dateStr.split("\\.")[1]);
+        int day = Integer.parseInt(dateStr.split("\\.")[2]);
+
+        return year*12*28+month*28+day;
+    }
+}
+ */
