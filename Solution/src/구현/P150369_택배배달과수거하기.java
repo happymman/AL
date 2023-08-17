@@ -8,12 +8,13 @@ public class P150369_택배배달과수거하기 {
 //        int n=5;
 //        int[] deliveries = {1, 0, 3, 1, 2};
 //        int[] pickups = {0, 3, 0, 4, 0};
-//
-//        int cap2 = 2;
-//        int n2=7;
-//        int[] deliveries2 = {1, 0, 2, 0, 1, 0, 2};
-//        int[] pickups2 = {0, 2, 0, 1, 0, 2, 0};
-//        System.out.println(s.solution(cap2, n2, deliveries2, pickups2));
+
+        int cap2 = 2;
+        int n2=7;
+        int[] deliveries2 = {1, 0, 2, 0, 1, 0, 2};
+        int[] pickups2 = {0, 2, 0, 1, 0, 2, 0};
+        System.out.println(s.solution(cap2, n2, deliveries2, pickups2));
+        System.out.println();
 //
 //        System.out.println(s.solution(4, 5, new int[]{1, 0, 3, 1, 2}, new int[]{0, 3, 0, 4, 0}));
 //        System.out.println(s.solution(4, 5, new int[]{8, 0, 8, 0, 4}, new int[]{0, 0, 0, 0, 20})); //50
@@ -113,7 +114,7 @@ class P150369_택배배달과수거하기_Solution {
 }
 */
 
-
+/*
 class P150369_택배배달과수거하기_Solution {
 
     static class Task{
@@ -154,7 +155,7 @@ class P150369_택배배달과수거하기_Solution {
                 if(dRest >= Dcurrent.box){
                     dRest -= Dcurrent.box;
                 }else{ //배달 불가능
-                    //남은 배달 양 스택에 넣어주기
+                    //남은 배달 스택에 넣어주기
                     d.push(new Task(Dcurrent.dist, Dcurrent.box-dRest));
                     break;
                 }
@@ -168,7 +169,7 @@ class P150369_택배배달과수거하기_Solution {
                 if(pRest >= Pcurrent.box){
                     pRest -= Pcurrent.box;
                 }else{ //배달 불가능
-                    //남은 배달 양 스택에 넣어주기
+                    //남은 배달 스택에 넣어주기
                     p.push(new Task(Pcurrent.dist, Pcurrent.box-pRest));
                     break;
                 }
@@ -176,5 +177,82 @@ class P150369_택배배달과수거하기_Solution {
         }
 
         return answer;
+    }
+}
+*/
+
+class P150369_택배배달과수거하기_Solution {
+
+    public class Task{
+        int dist;
+        int box;
+
+        Task(int dist, int box){
+            this.dist = dist;
+            this.box = box;
+        }
+    }
+
+    public long solution(int cap, int n, int[] deliveries, int[] pickups) {
+        Stack<Task> d = new Stack<>();
+        Stack<Task> p = new Stack<>();
+
+        for(int i=0;i<deliveries.length;i++){
+            int delivery = deliveries[i];
+            if(delivery !=0){
+                d.push(new Task(i+1, delivery));
+            }
+        }
+
+        for(int i=0;i<pickups.length;i++){
+            int pickup = pickups[i];
+            if(pickup !=0){
+                p.push(new Task(i+1, pickup));
+            }
+        }
+
+        long sum=0;
+        while(!d.isEmpty() || !p.isEmpty()){
+            int dDist = !d.isEmpty() ? d.peek().dist : 0;
+            int pDist = !p.isEmpty() ? p.peek().dist : 0;
+
+            System.out.println("dDist : "+dDist);
+            System.out.println("pDist : "+pDist);
+            sum+=Math.max(dDist, pDist)*2;
+
+            int dCap=cap;
+            //cap만큼 배달하기
+            while(!d.isEmpty()){
+                if(dCap==0) break;
+
+                Task dNow = d.pop();
+
+                if(dNow.box > dCap){
+                    d.push(new Task(dNow.dist, dNow.box-dCap));
+                    dCap=0;
+                }else if(dNow.box <= dCap){
+                    dCap -= dNow.box;
+                }
+            }
+
+            int pCap=cap;
+            //cap만큼 수거하기
+            while(!p.isEmpty()){
+                if(pCap==0) break;
+
+                Task pNow = p.pop();
+
+                if(pNow.box > pCap){
+                    pCap=0;
+                    p.push(new Task(pNow.dist, pNow.box-pCap));
+                }else if(pNow.box <= pCap){
+                    pCap -= pNow.box;
+                }
+            }
+        }
+
+        return sum;
+
+
     }
 }
