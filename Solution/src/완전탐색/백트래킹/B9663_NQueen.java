@@ -178,7 +178,9 @@ package 완전탐색.백트래킹;
 //    }
 //}
 
-//2차 풀이
+/*
+2차 풀이
+
 import java.util.Scanner;
 
 public class B9663_NQueen {
@@ -223,5 +225,51 @@ public class B9663_NQueen {
            if(queens[i] == queens[col]) return false;
         }
         return true;
+    }
+}
+*/
+
+//3차 풀이
+import java.util.Scanner;
+
+public class B9663_NQueen {
+
+    static long count=0;
+    static int N;
+    static int[] queens;
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        N = sc.nextInt(); //N 입력받기
+        queens = new int[N]; //퀸즈배열 초기화
+        BT(0); //BT시작
+        System.out.println(count); //경우의수 출력
+
+    }
+
+    static void BT(int depth){
+
+        if(depth==N){ //퀸을 N개 놓았으면
+            count++; //경우의수++
+            return;
+        }
+
+        for(int row=0;row<N;row++){ //해당 열(depth)에서 퀸 놓을 행 선택(+범위검사)
+            if(!canLocated(row, depth)) continue; //유효성 검사
+            //방문검사 필요X - 2중for문을 통해 순차적으로 진행 -> 중복방문 가능성X
+            queens[depth] = row;
+            BT(depth+1); //다음열 퀸위치 선택
+            //BT return이후, queens배열에서 행정보를 지우지 않아도, 선행재귀함수의 동작에 영향 미치지 않음
+        }
+
+    }
+
+    static boolean canLocated(int row, int depth){
+        for(int i=0;i<depth;i++){ //열별 놓여져있는 퀸 선택, depth==0일땐 무조건 통과
+           if(queens[i] == row) return false; //같은행에 있는지 확인 return false;
+           if(Math.abs(queens[i]-row) == Math.abs(i-depth)) return false; //대각선에 있는지 확인 return false;
+        }
+        return true; //모든 조건 통과시, 위치할 수 있음
     }
 }

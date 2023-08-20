@@ -120,7 +120,7 @@ class P60057_문자열압축Solution {
 }
 
 /*
-2차풀이 - 틀린풀이
+3차풀이 - 틀린풀이
 
 import java.util.*;
 
@@ -154,15 +154,15 @@ class Solution {
     }
 }
 
-2차풀이 - 옳은풀이
+3차풀이 - 옳은풀이
 
 import java.util.*;
 
 class Solution {
     public int solution(String s) {
-        int minLength=s.length(); //최소길이 = 가능최대길이로 설정
+        int minLength=s.length(); //최소길이를 가능최대길이로 설정
 
-        for(int i=1;i<=s.length()/2;i++){ //길이1, 2, 3, ,,, 문자열 반
+        for(int i=1;i<=s.length()/2;i++){ //기준문자열 길이 : 1<=문자열 반
             String stdStr = s.substring(0,i); //기준문자열 i길이만큼 자르기
             StringBuilder sb = new StringBuilder();
             int rCount=1; //초기화
@@ -172,13 +172,13 @@ class Solution {
                 String testStr = s.substring(j,end); //테스트문자열자르기
                 if(stdStr.equals(testStr)){ //기준문자열, 테스트문자열 같으면
                     rCount++;
-                }else{
+                }else{ //안같으면
                     sb.append(rCount!=1 ? rCount+stdStr : stdStr);
                     stdStr = testStr; //기준문자열 = 테스트문자열
                     rCount=1;
                 }
             }
-            //후처리
+            //상황 : 마지막 for문에서 if문실행됐건, else문 실행됐건 -> stdStr에 문자열과 rCount는 1이상값이 들어있는 상태
             sb.append(rCount!=1 ? rCount+stdStr : stdStr);
 
             minLength = Math.min(minLength, sb.toString().length()); //최솟값 담기
@@ -192,8 +192,8 @@ class Solution {
 상황 : 코드종류 - 최솟값 갱신 -> 초기기준값 무한대값으로 설정 - 상황 : 무조건 최소1번이상의 갱신이 이루어지는 상황
                           초기기준값 가능최댓값으로 설정 - 상황 : 최소1번이상의 갱신이 안이루어질수도 있는 상황 - ex : for문이 안돌아가서 in 최소길이
                                                   X상황 : 가능최댓값을 결정할 수 없을때
-상황 : 테케돌리기 - 예시테케
-                최소데이터, 최대데이터
+상황 : 상황경우의수 - 예시테케 -> 속성 분류
+                 최소데이터, 최대데이터
 
 상황 : 테케오류 -> 1.return자료형
                2.테케 최소,최대 고려여부 확인
