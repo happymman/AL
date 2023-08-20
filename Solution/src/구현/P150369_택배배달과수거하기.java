@@ -226,7 +226,6 @@ class P150369_택배배달과수거하기_Solution {
                 if(dCap==0) break;
 
                 Task dNow = d.pop();
-
                 if(dNow.box > dCap){
                     d.push(new Task(dNow.dist, dNow.box-dCap));
                     dCap=0;

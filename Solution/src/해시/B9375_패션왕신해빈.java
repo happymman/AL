@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.*;
 import java.io.*;
 
+/*
 public class B9375_패션왕신해빈 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -32,4 +33,34 @@ public class B9375_패션왕신해빈 {
         System.out.println(sb);
     }
 }
+ */
 
+
+public class B9375_패션왕신해빈 {
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+
+
+        //N입력받기
+        int N = Integer.parseInt(br.readLine());
+        for(int i=0;i<N;i++){
+            Map<String, Integer> fashion = new HashMap<>();
+            int M = Integer.parseInt(br.readLine());// 입력받기
+            for(int j=0;j<M;j++){
+                st = new StringTokenizer(br.readLine());
+                st.nextToken();
+                String type = st.nextToken();
+
+                fashion.put(type, fashion.getOrDefault(type, 0)+1);
+            }
+
+           int result=1;
+            for(int value : fashion.values()){
+                result *= (value+1);
+            }
+            System.out.println(result-1); //출력 아에 안입는 경우
+        }
+    }
+}
