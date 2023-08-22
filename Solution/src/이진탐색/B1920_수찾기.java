@@ -62,7 +62,7 @@ public class B1920_수찾기 {
         for(int i=0;i<N;i++){
             A[i] = sc.nextInt();//N개 입력받기
         }
-        Arrays.sort(A); //정렬
+        Arrays.sort(A); //정렬 - 이유 : 이진탐색의 탐색범위는 정렬되어있는 상태여야 가능
 
         //M입력받기
         int M = sc.nextInt();
