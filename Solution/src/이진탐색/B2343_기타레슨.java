@@ -95,49 +95,112 @@ package 이진탐색;
 //    }
 //}
 
+//import java.util.Scanner;
+//public class B2343_기타레슨 {
+//    public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//        int N = sc.nextInt();
+//        int M = sc.nextInt();
+//        int[] lectures = new int[N];
+//
+//        int left =0;
+//        int right=0;
+//        for(int i=0;i<N;i++){
+//            lectures[i] = sc.nextInt();
+//
+//            if(left<lectures[i]) left = lectures[i];
+//            right += lectures[i];
+//        }
+//        right -= 1;
+//        //left 설정(max값 : 입력받으면서 갱신)
+//        //right 설정(강의 합-1)
+//
+//        while(left<=right){
+//            //mid값 계산
+//            int mid = (left+right)/2;
+//            int count=0;
+//
+//            //mid값 검증
+//            int rest=0;
+//            for(int i=0;i<N;i++){
+//                if(lectures[i] > rest){
+//                    rest=mid;
+//                    count++;
+//                }
+//                rest -= lectures[i];
+//            }
+//
+//            //충족
+//            if(count<=M){
+//                right = mid-1;
+//            }else{ //불충족
+//                left = mid+1;
+//            }
+//        }
+//        System.out.println(left);
+//
+//    }
+//}
+
 import java.util.Scanner;
-public class B2343_기타레슨 {
+
+public class B2343_기타레슨{
     public static void main(String[] args) {
+
+        //N, M입력받기
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         int M = sc.nextInt();
-        int[] lectures = new int[N];
 
-        int left =0;
-        int right=0;
-        for(int i=0;i<N;i++){
+        int[] lectures = new int[N];//배열 선언
+
+        int max=0;
+        long sum=0;
+        for(int i=0;i<N;i++){ //강의담기
             lectures[i] = sc.nextInt();
-
-            if(left<lectures[i]) left = lectures[i];
-            right += lectures[i];
+            if(max < lectures[i]) max = lectures[i];
+            sum+= lectures[i];
         }
-        right -= 1;
-        //left 설정(max값 : 입력받으면서 갱신)
-        //right 설정(강의 합-1)
+
+        long left = max; //탐색범위 최솟값
+        long right = sum; //탐색범위 최댓값
 
         while(left<=right){
-            //mid값 계산
-            int mid = (left+right)/2;
-            int count=0;
+            long mid = (left+right)/2;
 
-            //mid값 검증
-            int rest=0;
-            for(int i=0;i<N;i++){
-                if(lectures[i] > rest){
-                    rest=mid;
-                    count++;
-                }
-                rest -= lectures[i];
-            }
+            //조건충족여부 검사
+            int blueRayCount = getCount(mid, lectures);
 
-            //충족
-            if(count<=M){
+            if(blueRayCount <= M){ //조건충족
                 right = mid-1;
-            }else{ //불충족
+            }else{ //조건불충족
                 left = mid+1;
             }
         }
-        System.out.println(left);
+        System.out.println(left);//left 출력
+
+    }
+
+    static int getCount(long size, int[] lectures){
+        int count=1; //count : 블루레이 개수
+        long rest=size; //rest : 남은 블루레이 용량
+
+        for(int i=0;i<lectures.length;i++){ //강의 선택
+            if(rest >= lectures[i]){ //강의를 담을 수 있다면
+                rest -= lectures[i]; //강의를 담고, 블루레이 용량은 줄고
+            }else{ //못담으면
+                count++; //블루레이 개수 늘리고
+                rest=size; //블루레이 용량은 초기화
+                i--; //못담은 강의를 넘기지 않기 위해서는 인덱스를-1해주는 것이 필
+            }
+        }
+        //rest가 0<= <size인 상황
+
+        return count;
 
     }
 }
+/*
+틀린 부분
+구체코드 - 이후 '천천히 테케 돌리기'안해서 else{}이후에 ㅇ
+ */
