@@ -171,7 +171,7 @@ public class B2343_기타레슨{
             //조건충족여부 검사
             int blueRayCount = getCount(mid, lectures);
 
-            if(blueRayCount <= M){ //조건충족
+            if(blueRayCount <= M){ //탐색값(mid)가 조건충족하는 경우 = 블루레이 개수가 M개 이하인 경우
                 right = mid-1;
             }else{ //조건불충족
                 left = mid+1;

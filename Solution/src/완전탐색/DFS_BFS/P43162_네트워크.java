@@ -164,3 +164,43 @@ public class P43162_네트워크 {
 //    }
 //}
 
+/*
+4차 풀이
+
+피드백 :
+코드종류 - 변수 할당 -> 변수 의미 명확하게하기(by 변수의미 주석)
+
+public class Solution{
+
+    static boolean[] isVisited;
+
+    public int solution(int n, int[][] computers){
+
+        isVisited=new boolean[n]; //방문배열 메모리 할당
+
+        int network=0;
+        for(int computer=0;computer<computers.length;computer++){ //컴퓨터 선택
+            if(isVisited[computer]) continue; //방문검사
+            isVisited[computer] = true; //방문처리
+
+            dfs(computer, computers);
+            network++;
+        }
+        return network;
+    }
+
+    static void dfs(int computer, int[][] computers){
+
+        for(int next=0;next<computers[computer].length;next++){ //연결된 컴퓨터 선택
+            int connect = computers[computer][next];
+            if(connect==0) continue; //1여부 검사 = 유효성검사
+            if(isVisited[next]) continue; //방문검사
+            isVisited[next] = true; //방문처리
+
+            dfs(next, computers); //해당 노드 방문
+        }
+
+    }
+}
+ */
+
