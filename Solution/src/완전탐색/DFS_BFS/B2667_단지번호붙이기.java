@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Scanner;
-import java.util.zip.InflaterInputStream;
 
 //public class B2667_단지번호붙이기 {
 //
@@ -76,8 +74,19 @@ import java.util.zip.InflaterInputStream;
 //    }
 //}
 
-public class B2667_단지번호붙이기 {
+/*
+2차풀이
 
+피드백 :
+- 풀이법을 완벽하게 알고 있다고 착각 -> 생각을 거의 거치지 않고, 손가는대로 코딩
+-> 모든 문제를 할 수 있는한 가장 느리게 풀이하며, 쳐해있는 상황에서 고려할만한 모든 요소들을 고려하고, 해야될 모든 행위를 하는 것이 중요하다.
+더이상 천천히 할 수 없는 속도로 코딩을 반복하는 것이 가장 빠르게 문제해결을 체화시키는 방법.
+*쳐해있는 상황에서 해야할 모든 행위
+ex)코드 - 코드이유, 변수 -> 의미, 변수할당 -> 변수의미 주석쓰기
+배열관련 코드 -> 배열그림(or 공책그림)
+
+ */
+public class B2667_단지번호붙이기 {
     static int[][] map;
     static int[][] mark;
     static boolean[][] isVisited;
