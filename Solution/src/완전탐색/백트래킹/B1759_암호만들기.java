@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+/*
+1차풀이 - 25m
+
+ */
 public class B1759_암호만들기 {
     static int L;
     static List<String> answer = new ArrayList<>();
@@ -24,14 +28,15 @@ public class B1759_암호만들기 {
         }
         Arrays.sort(charArr);//정렬
 
-        DFS("", 0, 0, charArr); //a c i s t w
+        BT("", 0, 0, charArr); //a c i s t w
         for(String s : answer){
             System.out.println(s);
         }
     }
 
-    static void DFS(String key, int start, int count, char[] arr){ //
+    static void BT(String key, int start, int count, char[] arr){ //
 
+        //노드처리 X
         if(count==L){ //탐색종료여부 검사
             int[] vowelConsonant = countVowelConsonant(key); //모음, 자음개수 세기
             if(vowelConsonant[0]>=1 && vowelConsonant[1]>=2) answer.add(key); //조건충족 -> 저장
@@ -40,9 +45,9 @@ public class B1759_암호만들기 {
 
         for(int i=start;i<arr.length;i++){ //범위검사
             //유효성검사X
-            //방문검사X - 상황 : 가지치키(백트래킹)? 일단 없다고 가정하기. 순차적 진행
+            //방문검사X - 상황 : 경로역할 필요X, 중복방문X(<-순차적진행)
             //방문처리X
-            DFS(key+arr[i], i+1, count+1, arr); //다음노드 방문
+            BT(key+arr[i], i+1, count+1, arr); //다음노드 방문
         }
     }
 
