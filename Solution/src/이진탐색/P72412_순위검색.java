@@ -170,3 +170,80 @@ class P72412_순위검색_Solution {
     }
 
 }
+
+/*
+2차풀이 - 소요시간 : 37m
+
+피드백
+- 탐색종료여부 검사라는 틀을 적용하지 않았던 것 - 그래서 return을 까먹었을수도.
+
+ */
+//import java.util.*;
+//
+//class Solution {
+//
+//    static Map<String, List<Integer>> map = new HashMap<>();
+//
+//    public int[] solution(String[] infos, String[] queries) {
+//
+//        for(String info : infos){ //info선택
+//            String[] items = info.split(" ");// 공백기준 split
+//            DFS("", items, 0); //이진DFS로 경우의수 만들어서 map에 등록
+//        }
+//
+//        for(List<Integer> list : map.values()){ //모든 List정렬
+//            Collections.sort(list);
+//        }
+//
+//        List<Integer> resultList=new ArrayList<>();
+//        for(String query : queries){ //쿼리 선택
+//            String[] items = query.split(" and ");//" and "기준 split
+//            String key = items[0]+items[1]+items[2]+items[3].split(" ")[0];
+//            int target = Integer.parseInt(items[3].split(" ")[1]);
+//
+//            if(!map.containsKey(key)){ //scoreList가 존재하지 않는다면, 0add
+//                resultList.add(0);
+//            }else{
+//                List<Integer> scoreList = map.get(key);
+//                int result = scoreList.size() - binarySearch(target, scoreList);
+//                resultList.add(result);
+//            }
+//        }
+//
+//        return resultList.stream().mapToInt(Integer::intValue).toArray();
+//    }
+//
+//    static void DFS(String key, String[] items, int depth){
+//        if(depth==4){ //조건충족시 map에 저장
+//            int score = Integer.parseInt(items[4]);
+//            if(map.containsKey(key)){ //List가 있는 경우
+//                map.get(key).add(score);//해당key의 List를 조회해서 점수add
+//            }else{ //List가 없는 경우
+//                map.put(key, new ArrayList<>()); //List추가
+//                map.get(key).add(score); //해당key의 List를 조회해서 점수add
+//            }
+//            return;
+//        }
+//
+//        DFS(key+items[depth], items, depth+1);
+//        DFS(key+"-", items, depth+1);
+//
+//    }
+//
+//    static int binarySearch(int target, List<Integer> scoreList){
+//        int left=0;
+//        int right=scoreList.size()-1;
+//
+//        while(left<=right){
+//            int mid=(left+right)/2;
+//
+//            if(target <= scoreList.get(mid) ){ //조건충족
+//                right = mid-1;
+//            }else{
+//                left = mid+1;
+//            }
+//        }
+//        return left;
+//    }
+//
+//}

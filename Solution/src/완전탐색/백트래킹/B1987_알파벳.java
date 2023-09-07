@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+//1차풀이 - 24m
 public class B1987_알파벳 {
     static int max=0;
     static int R;
