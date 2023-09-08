@@ -1,21 +1,24 @@
 package 완전탐색.DFS_BFS;
 
 import java.util.*;
+/*
+1차풀이 -
 
+실수 :
+ */
 public class B9205_맥주마시면서걸어가기 {
     static int N;
-    static boolean[] isVisited;
+    static boolean[] isVisited; //방문배열 -> 중복방문을 막기위함 - 갔던 곳을 다시 가는 것이 아무의미X, (BFS여서 무한루프는 일어나지 않지만 비효율)
     static int[][] dists;
-
     static class Node{
         int x;
         int y;
-
         Node(int x, int y){
             this.x=x;
             this.y=y;
         }
     }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -62,7 +65,8 @@ public class B9205_맥주마시면서걸어가기 {
     }
 
     static boolean canArrival(int currentX, int currentY, int targetX, int targetY){
-        int beerRequired = (Math.abs(currentX-targetX)+ Math.abs(currentY-targetY))/50;
+        int dist = (Math.abs(currentX-targetX)+ Math.abs(currentY-targetY));
+        int beerRequired = dist%50==0 ? dist/50 : dist/50+1; //
         return 20 >= beerRequired;
     }
 }
