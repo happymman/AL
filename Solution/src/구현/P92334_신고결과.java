@@ -52,3 +52,53 @@ class P92334_신고결과Solution {
 
     }
 }
+
+/*
+2차풀이 - 22m
+ */
+//import java.util.*;
+//
+//class Solution {
+//
+//    static Map<String, Set<String>> reporterMap = new HashMap<>();
+//    static Map<String, Integer> reportedMap = new HashMap<>();
+//
+//    public int[] solution(String[] id_list, String[] reports, int k) {
+//
+//        for(String id : id_list){
+//            reporterMap.put(id, new HashSet<>());
+//        }
+//
+//        for(String report : reports){ //report선택
+//            String reporter = report.split(" ")[0]; //
+//            String reported = report.split(" ")[1];
+//
+//            if(!reporterMap.get(reporter).contains(reported)){ //신고자의 신고목록에 피신고자가 이미 있지않다면
+//                reportedMap.put(reported, reportedMap.getOrDefault(reported,0)+1);
+//            }
+//            reporterMap.get(reporter).add(reported);
+//        }
+//
+//        List<String> stopList = new ArrayList<>();
+//        for(String key : reportedMap.keySet()){
+//            if(reportedMap.get(key) >= k) stopList.add(key);
+//        }
+//
+//        for(String stop : stopList){
+//            System.out.print(stop+" ");
+//        }
+//
+//        List<Integer> result = new ArrayList<>();
+//        for(String id : id_list){
+//            int sum=0; //sum : 유저별 유효신고개수
+//            for(String stop : stopList){
+//                if(reporterMap.get(id).contains(stop)) sum++;
+//            }
+//            result.add(sum);
+//        }
+//
+//        return result.stream().mapToInt(Integer::intValue).toArray();
+//
+//
+//    }
+//}

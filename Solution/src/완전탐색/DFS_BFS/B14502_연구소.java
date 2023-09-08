@@ -50,7 +50,7 @@ import java.util.Scanner;
 //            int j = visitList.get(index)[1];
 //
 //            //유효성검사X - map[][]==1,2인 곳을 꺼내지 않는다.
-//            map[i][j]=3; //쉬운 디버깅을 위해서 3으로 처리
+//            map[i][j]=3; //쉬운 디버깅을 위해서 3으로 새벽 처리
 //            //방문검사X
 //            //방문처리X
 //
@@ -199,6 +199,11 @@ import java.util.Scanner;
 //    }
 //}
 
+/*
+1차풀이 - 2h
+
+- 벽이 3개일땐 3중for문 완전탐색 가능, 벽개수가 더 많아질때는 백트래킹 풀이 필요
+ */
 public class B14502_연구소 {
     static int N;
     static int M;
@@ -237,33 +242,31 @@ public class B14502_연구소 {
             return;
         }
 
-        for(int index=start;index<visitList.size();index++){
+        for(int index=start;index<visitList.size();index++){ //조합 - 순차적 방문상황 최적화를 위해서 방문리스트 탐색을 해당 인덱스부터 시작한다.
             int i = visitList.get(index)[0];
             int j = visitList.get(index)[1];
 
-            //유효성검사X - map[][]==1,2인 곳을 꺼내지 않는다.
-            originalMap[i][j]=3; //쉬운 디버깅을 위해서 새벽 놓는 곳은 3으로 처리
-            //방문검사X
+            //유효성검사X - 초기 빈공간이었던(0) 부분의 좌표를 대상으로 하므로 유효성검사가 필요없다(map[][]==1,2인 곳을 꺼내지 않는다.)
+            originalMap[i][j]=3; //선택 - 쉬운 디버깅을 위해서 새벽 놓는 곳은 3으로 처리
+            //방문검사X - 노드방문이 순차적으로 이루어지므로, 중복방문의 가능성이 없다.
             //방문처리X
 
-            BT(index+1, depth+1);
+            BT(index+1, depth+1); //다음 대상 선택
             originalMap[i][j]=0;
-
         }
     }
 
     private static void arrayDeepCopy() {
         tempMap = new int[N][M];
         for(int i=0;i<N;i++){
-            for(int j=0;j<M;j++){
-                tempMap[i][j] = originalMap[i][j];
-            }
+            tempMap[i] = originalMap[i].clone();
         }
     }
 
     //
     static void spread(){
         for(int[] virus : virusList) { //처음 입력됐던 바이러스 대상으로 DFS실시
+            //방문처리X
             DFS(virus[0],virus[1]);
         }
     }
@@ -277,8 +280,7 @@ public class B14502_연구소 {
         }
         return safe;
     }
-    static void DFS(int r, int c){ //
-        tempMap[r][c] = 2; //바이러스 확산 - 노드처리
+    static void DFS(int r, int c){
 
         for(int d=0;d<4;d++){
             int nr=r+dir[d][0];
@@ -286,6 +288,7 @@ public class B14502_연구소 {
 
             if(nr<0||nc<0||nr>=N||nc>=M) continue; //범위검사
             if(tempMap[nr][nc]==1 || tempMap[nr][nc]==2|| tempMap[nr][nc]==3) continue; //방문검사+유효성검사 - 벽, 새벽 있는 곳은 바이러스 침투 불가, 바이러스 있는 곳은 침투필요X
+            tempMap[nr][nc] = 2; //바이러스 확산 - 방문처리
 
             DFS(nr, nc);
         }

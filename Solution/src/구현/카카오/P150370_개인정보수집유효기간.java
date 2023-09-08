@@ -1,4 +1,4 @@
-package 구현;
+package 구현.카카오;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -209,3 +209,93 @@ class Solution {
     }
 }
  */
+
+/*
+3차 풀이
+유효기간, ~동안 -> 그림(시작일+만료일 포함)
+split(".") -> split("\\.")
+
+import java.util.*;
+
+class Solution {
+    static Map<String, Integer> termsMap=new HashMap<>();
+    public int[] solution(String todayStr, String[] termsStr, String[] privacies) {
+
+        //terms 등록
+        for(String termStr : termsStr){
+            String 약관 = termStr.split(" ")[0];
+            int term = Integer.parseInt(termStr.split(" ")[1]);
+            termsMap.put(약관, term);
+        }
+
+        int today = getDate(todayStr); //today 파싱
+
+        List<Integer> result=new ArrayList<>();
+
+        for(int i=0;i<privacies.length;i++){ //약관 선택
+            String privacy = privacies[i];
+            int start = getDate(privacy.split(" ")[0]);// 약관 파싱 -> 2021.05.02 A
+            String term = privacy.split(" ")[1];
+            int 유효기간 = termsMap.get(term)*28;
+
+            int 만료날짜 = start+유효기간-1;
+
+            //today랑 비교
+            if(today>만료날짜) result.add(i+1); //만료 -> 인덱스 등록
+        }
+
+        return result.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    static int getDate(String dateStr){
+        int year=Integer.parseInt(dateStr.split("\\.")[0]);
+        int month = Integer.parseInt(dateStr.split("\\.")[1]);
+        int day = Integer.parseInt(dateStr.split("\\.")[2]);
+        return year*28*12+month*28+day;
+    }
+
+}
+
+import java.util.*;
+
+class Solution {
+    static Map<String, Integer> termsMap=new HashMap<>();
+    public int[] solution(String todayStr, String[] termsStr, String[] privacies) {
+
+        //terms 등록
+        for(String termStr : termsStr){
+            String 약관 = termStr.split(" ")[0];
+            int term = Integer.parseInt(termStr.split(" ")[1]);
+            termsMap.put(약관, term);
+        }
+
+        int today = getDate(todayStr); //today 파싱
+
+        List<Integer> result=new ArrayList<>();
+
+        for(int i=0;i<privacies.length;i++){ //약관 선택
+            String privacy = privacies[i];
+            int start = getDate(privacy.split(" ")[0]);// 약관 파싱 -> 2021.05.02 A
+            String term = privacy.split(" ")[1];
+            int 유효기간 = termsMap.get(term)*28;
+
+            int 만료날짜 = start+유효기간-1;
+
+            //today랑 비교
+            if(today>만료날짜) result.add(i+1); //만료 -> 인덱스 등록
+        }
+
+        return result.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    static int getDate(String dateStr){
+        int year=Integer.parseInt(dateStr.split("\\.")[0]);
+        int month = Integer.parseInt(dateStr.split("\\.")[1]);
+        int day = Integer.parseInt(dateStr.split("\\.")[2]);
+        return year*28*12+month*28+day;
+    }
+
+}
+
+ */
+

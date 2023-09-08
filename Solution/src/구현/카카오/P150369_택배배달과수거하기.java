@@ -1,4 +1,4 @@
-package 구현;
+package 구현.카카오;
 import java.util.*;
 
 public class P150369_택배배달과수거하기 {
@@ -255,3 +255,81 @@ class P150369_택배배달과수거하기_Solution {
 
     }
 }
+
+/*
+2차풀이 - 42m
+
+코드쓰기 - 상황 : 계속반복 - 이미 while있는 상태 -> break로 종료조건에 대한 코드를 작성할 것
+코드쓰기 - 상황 : 스택, 큐 -> 원소꺼내는 것은 무조건 while(스택큐 안비었을때, if(스택큐 안비었을때)
+
+ */
+//import java.util.*;
+//
+//class Solution {
+//    public class Task{
+//        int dist;
+//        int count;
+//        Task(int dist, int count){
+//            this.dist=dist;
+//            this.count=count;
+//        }
+//    }
+//
+//    public long solution(int cap, int n, int[] deliveries, int[] pickups) {
+//
+//        //배달큐생성
+//        Stack<Task> d= new Stack<>();
+//        //배달 원소넣기
+//        for(int i=0;i<deliveries.length;i++){
+//            if(deliveries[i]!=0) d.add(new Task(i+1,deliveries[i]));
+//        }
+//
+//        //픽업큐생성
+//        Stack<Task> p= new Stack<>();
+//        //픽업 원소넣기
+//        for(int i=0;i<pickups.length;i++){
+//            if(pickups[i]!=0) p.add(new Task(i+1,pickups[i]));
+//        }
+//
+//        long sum=0;
+//        while(true){
+//            if(d.isEmpty() && p.isEmpty()) break; //배달큐, 픽업큐 모두 비었을때 종료
+//
+//            int dDist= !d.isEmpty() ? d.peek().dist : 0;
+//            int pDist= !p.isEmpty() ? p.peek().dist : 0;
+//
+//            sum+=Math.max(dDist, pDist)*2; //더 멀리가야하는 집의 거리를 더함
+//
+//            //배달용량 복사
+//            int dCap=cap;
+//            while(!d.isEmpty()){ //배달큐 안비었을때
+//                Task now = d.pop();//원소꺼내기
+//
+//                if(now.count<=dCap){ //배달용량 이하일때
+//                    dCap-=now.count;//배달용량 감소
+//                }else{ //초과했을때
+//                    d.add(new Task(now.dist, now.count-dCap));//원소 다시 넣기
+//                    dCap=0;//배달용량 =0;
+//                }
+//
+//                if(dCap==0) break;//배달용량 0일때 종료
+//
+//            }
+//
+//            //픽업용량 복사
+//            int pCap = cap;
+//            while(!p.isEmpty()){ //픽업큐 안비었을때
+//                Task now = p.pop();//원소꺼내기
+//
+//                if(now.count<=pCap){ //배달용량 이하일때
+//                    pCap-=now.count;//배달용량 감소
+//                }else{ //초과했을때
+//                    p.add(new Task(now.dist, now.count-pCap));//원소 다시 넣기
+//                    pCap=0;//배달용량 =0;
+//                }
+//                if(pCap==0) break;//배달용량 0일때 종료
+//            }
+//        }
+//        return sum;
+//    }
+//}

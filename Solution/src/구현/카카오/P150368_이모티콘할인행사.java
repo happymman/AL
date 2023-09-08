@@ -1,4 +1,4 @@
-package 구현;
+package 구현.카카오;
 
 import java.util.*;
 public class P150368_이모티콘할인행사 {
@@ -124,3 +124,70 @@ class P150368_이모티콘할인행사Solution {
     }
 
 }
+
+
+/*
+2차풀이 - 39m
+
+출력오류 -> 원인 : 기준 할인율보다 높을때만 산다는 기준을 까먹었음
+
+ */
+//import java.util.*;
+//
+//class Solution {
+//
+//    static List<int[]> discountList = new ArrayList<>(); //discoutList : 할인비율조합 리스트
+//    static int[] discount=new int[]{10, 20, 30, 40}; //discount : 할인율 배열
+//    static int emoticonLength;
+//
+//    public int[] solution(int[][] users, int[] emoticons) {
+//        emoticonLength = emoticons.length;
+//        recur(new int[emoticons.length], 0);
+//
+//        int maxJoin=0; //maxJoin : 최대가입자수
+//        int maxSum=0; //maxSum : 최대가입자수일때 이모티콘 구매비용
+//
+//        for(int[] discount : discountList){ //할인율 조합 선택
+//
+//            int join=0; //join : 할인율 조합별 가입자수
+//            int 조합Sum=0; //조합sum : 할인율 조합별 이모티콘 구매비용
+//
+//            for(int i=0;i<users.length;i++){ //유저 선택
+//                int userSum=0; //유저별로 구매합계가 초기화돼야함
+//                for(int j=0;j<emoticons.length;j++){ //이모티콘 선택
+//                    if(users[i][0] <= discount[j]) userSum+=(emoticons[j]*(100-discount[j])/100);//이모티콘 가격*(100-할인율);
+//                }
+//
+//                if(userSum >= users[i][1]){ //유저sum이 유저기준 이상이면 -> 이모티콘 플러스 가입
+//                    join++;
+//                }else{
+//                    조합Sum+=userSum;
+//                }
+//            }
+//
+//            if(maxJoin < join){ //최대가입자수보다 더 많을때
+//                maxJoin = join;
+//                maxSum = 조합Sum;
+//            }else if(maxJoin==join){ //최대가입자수랑 같을때
+//                maxSum = Math.max(maxSum, 조합Sum);//이모티콘 구매비용 최대치 갱신
+//            }
+//
+//        }
+//
+//        return new int[]{maxJoin, maxSum};
+//
+//    }
+//
+//    static void recur(int[] route, int depth){
+//        if(depth==emoticonLength){ //
+//            discountList.add(route.clone()); //deepCopy
+//            return;
+//        }
+//
+//        for(int i=0;i<4;i++){ //할인율 선택
+//            route[depth] = discount[i];
+//            recur(route, depth+1);
+//        }
+//    }
+//
+//}
