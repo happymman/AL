@@ -256,6 +256,9 @@ class Solution {
 
 }
 
+
+4차풀이 - 22m
+
 import java.util.*;
 
 class Solution {
@@ -294,6 +297,48 @@ class Solution {
         int day = Integer.parseInt(dateStr.split("\\.")[2]);
         return year*28*12+month*28+day;
     }
+
+}
+
+
+import java.util.*;
+
+class Solution {
+    static Map<String, Integer> termsMap = new HashMap<>();
+    public int[] solution(String todayStr, String[] termsStr, String[] privacies) {
+
+        int today = getDate(todayStr); //todayStr변환하기
+
+        for(String termStr : termsStr){ //term선택
+            String key = termStr.split(" ")[0]; //split(" ")해서 termsMap에 등록하기
+            int value = Integer.parseInt(termStr.split(" ")[1]);
+            termsMap.put(key, value);
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for(int i=0;i<privacies.length;i++){ //privacy선택
+            String privacy = privacies[i];
+
+            int 시작날짜 = getDate(privacy.split(" ")[0]); //split(" ")해서
+            int 유효기간 = termsMap.get(privacy.split(" ")[1])*28; //에서 찾기
+            int 만료날짜 = 시작날짜+유효기간-1;
+
+            if (today > 만료날짜) result.add(i+1);//만료
+        }
+
+        return result.stream().mapToInt(Integer::intValue).toArray();
+
+    }
+
+    static int getDate(String dateStr){
+        int year = Integer.parseInt(dateStr.split("\\.")[0]);
+        int month = Integer.parseInt(dateStr.split("\\.")[1]);
+        int day = Integer.parseInt(dateStr.split("\\.")[2]);
+
+        return year*12*28+month*28+day;
+    }
+
+
 
 }
 
