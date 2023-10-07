@@ -178,16 +178,94 @@ class P150368_이모티콘할인행사Solution {
 //
 //    }
 //
-//    static void recur(int[] route, int depth){
-//        if(depth==emoticonLength){ //
+//    static void recur(int depth, int[] route){
+//        if(depth==emoticonLength){ //탐색종료여부 검사
 //            discountList.add(route.clone()); //deepCopy
 //            return;
 //        }
 //
-//        for(int i=0;i<4;i++){ //할인율 선택
+//        for(int i=0;i<4;i++){ //할인율 선택 - 범위검사(자동)
+//            //방문검사X
+//            //유효성검사X
+//
 //            route[depth] = discount[i];
-//            recur(route, depth+1);
+//            recur(depth+1, route); //다음노드 탐색
 //        }
 //    }
 //
+//}
+
+/*
+4차풀이 - 40m
+실수 - 할인율 고려안하고 이모티콘 가격 전부를 더해버림
+for문 - 상황 : 인덱스필요 - 순서정보 필요 - ratios의 정보랑 같은순서로 연결되어있었기때문
+
+ */
+//import java.util.*;
+//
+//class Solution {
+//
+//    static List<int[]> ratioList = new ArrayList<>();
+//    static int[] ratio = new int[]{10, 20, 30, 40};
+//    static int emoticonLength;
+//
+//    static class 이모티콘조합 implements Comparable<이모티콘조합>{
+//        int join;
+//        int sum;
+//
+//        이모티콘조합(int join, int sum){
+//            this.join = join;
+//            this.sum = sum;
+//        }
+//
+//        @Override
+//        public int compareTo(이모티콘조합 o){
+//            if(join != o.join) return -(join-o.join);
+//            return -(sum-o.sum);
+//        }
+//    }
+//
+//    public int[] solution(int[][] users, int[] emoticons) {
+//        emoticonLength = emoticons.length;
+//
+//        비율조합_만들기(0, new int[emoticonLength]);
+//
+//        PriorityQueue<이모티콘조합> result = new PriorityQueue<>(); //result : 플러스가입자수, 금액을 담은 리스트
+//        for(int[] ratio : ratioList){ //비율조합 선택
+//            int join=0;
+//            int sum=0; //sum : 비율조합별 구매금액
+//
+//            for(int[] user : users){ //유저 선택
+//                int userSum=0;
+//                for(int i=0;i<emoticons.length;i++){ //이모티콘 선택
+//                    int emoticon = emoticons[i];
+//
+//                    if(ratio[i] >= user[0]) userSum += emoticon*(100-ratio[i])/100; //if 이모티콘 할인율이 유저기준 할인율 이상인지 검사
+//                }
+//                if(userSum >= user[1]){ //유저 구매총합이 유저기준 금액이상인지 검사
+//                    join++;
+//                }else{
+//                    sum += userSum;
+//                }
+//            }
+//            result.add(new 이모티콘조합(join, sum));
+//        }
+//
+//        int bestJoin = result.peek().join;
+//        int bestSum= result.peek().sum;
+//        return new int[]{bestJoin, bestSum};
+//
+//    }
+//
+//    static void 비율조합_만들기(int depth, int[] arr){
+//        if(depth==emoticonLength){
+//            ratioList.add(Arrays.copyOf(arr,arr.length));
+//            return;
+//        }
+//
+//        for(int i=0;i<4;i++){
+//            arr[depth] = ratio[i];
+//            비율조합_만들기(depth+1, arr);
+//        }
+//    }
 //}

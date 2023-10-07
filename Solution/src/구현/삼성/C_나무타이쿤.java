@@ -57,7 +57,7 @@ public class C_나무타이쿤 {
     }
 
     static void 영양제_이동(int d, int p){
-        int[][] dir={{0,1},{-1,1},{-1,0},{-1,-1},{0,-1},{1,-1},{1,0},{1,1}};
+        int[][] dir={{0,-1},{-1,-1},{-1,0},{-1,1},{0,1},{1,1},{1,0},{1,-1}};
         boolean[][] temp = new boolean[N][N];
 
         int xMove = dir[d-1][0]*p;
