@@ -1,4 +1,4 @@
-package 구현.삼성;
+package 구현.시뮬.삼성;
 
 import java.util.*;
 
@@ -8,6 +8,7 @@ import java.util.*;
 - 평면(NM)인데 input을 NN으로 받음
 - 우선순위 고려(행+열, 행, 열)
  */
+
 //public class C_포탑부수기 {
 //    static int time=0;
 //    static int M;

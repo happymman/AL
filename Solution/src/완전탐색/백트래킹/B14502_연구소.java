@@ -1,4 +1,4 @@
-package 완전탐색.DFS_BFS;
+package 완전탐색.백트래킹;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -208,7 +208,7 @@ public class B14502_연구소 {
     static int N;
     static int M;
     static int max=0;
-    static int[][] originalMap;
+    static int[][] original;
     static int[][] tempMap;
     static List<int[]> virusList= new ArrayList<>();
     static List<int[]> visitList= new ArrayList<>();
@@ -220,11 +220,11 @@ public class B14502_연구소 {
         M = sc.nextInt();//M입력받기
 
         //map초기화
-        originalMap = new int[N][M];
+        original = new int[N][M];
         for(int i=0;i<N;i++){
             for(int j=0;j<M;j++){
                 int input = sc.nextInt();
-                originalMap[i][j]=input;
+                original[i][j]=input;
                 if(input==0) visitList.add(new int[]{i,j}); //빈벽이었던 곳만 새벽 놓는 후보가 될 수 있도록
                 if(input==2) virusList.add(new int[]{i,j});
             }
@@ -235,7 +235,7 @@ public class B14502_연구소 {
     }
 
     static void BT(int start, int depth){
-        if(depth==3){ //벽의 개수가 3개일때 바이러스 DFS시작 - 노드처리+다음탐색 종료여부 검사
+        if(depth==3){ //다음탐색 종료여부 검사 - 벽의 개수가 3개일때 바이러스 DFS시작
             arrayDeepCopy(); //tempMap초기화 &map 복사 - map은 훼손되면 안되니깐
             spread();
             max = Math.max(max, countSafe());
@@ -247,19 +247,18 @@ public class B14502_연구소 {
             int j = visitList.get(index)[1];
 
             //유효성검사X - 초기 빈공간이었던(0) 부분의 좌표를 대상으로 하므로 유효성검사가 필요없다(map[][]==1,2인 곳을 꺼내지 않는다.)
-            originalMap[i][j]=3; //선택 - 쉬운 디버깅을 위해서 새벽 놓는 곳은 3으로 처리
-            //방문검사X - 노드방문이 순차적으로 이루어지므로, 중복방문의 가능성이 없다.
-            //방문처리X
+            original[i][j]=1; //벽위치 선택 - 상태변경
+            //방문검사, 방문처리X - 노드방문이 순차적으로 이루어지므로, 중복방문의 가능성이 없다.
 
             BT(index+1, depth+1); //다음 대상 선택
-            originalMap[i][j]=0;
+            original[i][j]=0; // 상태복원 - 이유 : 모든 후보가 선택되지는 않는 상황
         }
     }
 
     private static void arrayDeepCopy() {
         tempMap = new int[N][M];
         for(int i=0;i<N;i++){
-            tempMap[i] = originalMap[i].clone();
+            tempMap[i] = original[i].clone();
         }
     }
 

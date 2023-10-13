@@ -1,4 +1,4 @@
-package 구현.삼성;
+package 구현.시뮬.삼성;
 
 import java.util.*;
 /*
