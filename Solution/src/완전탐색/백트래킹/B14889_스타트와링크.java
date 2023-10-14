@@ -1,7 +1,15 @@
 package 완전탐색.백트래킹;
 
 import java.util.*;
+/*
+1차풀이 - 1m
+- 자료구조 선택 - 배열 - 상황 : 포함연산 적게필요(가능은함)
+              List - 상황 : 포함연산 필요, 인덱스 조회 필요
+              Set - 상황 : 빠른 포함연산 필요, 인덱스 조회 필요X
+- deepcopy - 배열
+             Collections
 
+ */
 public class B14889_스타트와링크 {
 
     static int N;
