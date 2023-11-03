@@ -3,7 +3,6 @@ package 구현.스택큐;
 import java.util.*;
 /*
 1차풀이 - 2h 55m
--
  */
 
 public class S803_교차로 {
@@ -127,4 +126,124 @@ public class S803_교차로 {
 
     }
 }
+
+
+/*
+2차풀이(연구ing) - 1h 50m
+ */
+//import java.io.*;
+//        import java.util.*;
+//
+//public class Main {
+//
+//    static class Car{
+//        int idx;
+//        int time;
+//        int road;
+//
+//        Car(int idx, int time, int road){
+//            this.idx =idx;
+//            this.time = time;
+//            this.road = road;
+//        }
+//    }
+//
+//    static Queue<Car>[] roads = new Queue[4];
+//    static Queue<Car> wait = new LinkedList<>();
+//    static int[] answer;
+//    static List<Integer> zeroPass = new ArrayList<>();
+//    static boolean[] canPass;
+//    static int N;
+//    static int time=0;
+//
+//    public static void main(String[] args) {
+//        input();
+//        pro();
+//        for(int num : answer){
+//            System.out.println(num);
+//        }
+//    }
+//
+//    static void input(){
+//        //N입력받기
+//        Scanner sc = new Scanner(System.in);
+//        N = sc.nextInt();
+//        answer = new int[N];
+//
+//        for(int i=0;i<4;i++){
+//            roads[i] = new LinkedList<>();
+//        }
+//
+//        //차 정보 입력받기
+//        for(int i=0;i<N;i++){
+//            int time = sc.nextInt();
+//            String road = sc.next();
+//            switch(road){
+//                case "A" : wait.add(new Car(i, time, 0));break;
+//                case "B" : wait.add(new Car(i, time, 1));break;
+//                case "C" : wait.add(new Car(i, time, 2));break;
+//                case "D" : wait.add(new Car(i, time, 3));break;
+//            }
+//        }
+//
+//
+//    }
+//
+//    static void pro(){
+//
+//        while(!(allRoadsEmpty() && wait.isEmpty())){ //둘다 비었을때 종료
+//            // System.out.println("time before : "+time);
+//            if(allRoadsEmpty() && !wait.isEmpty()) time = wait.peek().time;
+//            // System.out.println("time after : "+time);
+//
+//
+//            while(!wait.isEmpty() && wait.peek().time <= time){
+//                Car now = wait.poll();
+//                switch(now.road){
+//                    case 0 : roads[0].add(new Car(now.idx, now.time, now.road)); break;
+//                    case 1 : roads[1].add(new Car(now.idx, now.time, now.road)); break;
+//                    case 2 : roads[2].add(new Car(now.idx, now.time, now.road)); break;
+//                    case 3 : roads[3].add(new Car(now.idx, now.time, now.road)); break;
+//                }
+//            }
+//
+//            if(isDeadLock()){
+//                for(int i=0;i<answer.length;i++){
+//                    if(!zeroPass.contains(i) && answer[i]==0) answer[i] = -1;
+//                }
+//                break;
+//            }
+//
+//            canPass = new boolean[4];
+//            for(int i=0;i<4;i++){
+//                if(!roads[i].isEmpty() && roads[((i-1)+4)%4].isEmpty()) canPass[i]=true;
+//            }
+//
+//            for(int i=0;i<4;i++){
+//                if(canPass[i]){
+//                    Car now = roads[i].poll();
+//                    answer[now.idx] = time;
+//                    if(time==0) zeroPass.add(now.idx);
+//                }
+//            }
+//
+//            time++;
+//        }
+//
+//    }
+//
+//    static boolean allRoadsEmpty(){
+//        for(int i=0;i<4;i++){
+//            if(!roads[i].isEmpty()) return false;
+//        }
+//        return true;
+//    }
+//
+//    static boolean isDeadLock(){
+//        for(int i=0;i<4;i++){
+//            if(roads[i].isEmpty()) return false;
+//        }
+//        return true;
+//    }
+//}
 
