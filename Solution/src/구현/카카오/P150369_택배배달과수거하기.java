@@ -333,3 +333,75 @@ class P150369_택배배달과수거하기_Solution {
 //        return sum;
 //    }
 //}
+
+
+/*
+4차풀이
+실수
+- 초기화 작업에서 실수 : 0인애들은 안넣었어야함 -> 구체코드 작성시, 왼쪽화면에 input보고, 초기화 작업또한 그림상상하기
+- return자료형 long 고려
+ */
+//import java.util.*;
+//
+//class Solution {
+//    static Stack<Work> dStack = new Stack<>();
+//    static Stack<Work> pStack = new Stack<>();
+//    static long dist=0;
+//    static class Work{
+//        int dist;
+//        int count;
+//        Work(int dist, int count){
+//            this.dist = dist;
+//            this.count = count;
+//        }
+//    }
+//
+//    public long solution(int cap, int n, int[] deliveries, int[] pickups) {
+//
+//        for(int i=0;i<deliveries.length;i++){
+//            int delivery = deliveries[i];
+//            if(delivery != 0) dStack.add(new Work(i+1, delivery));
+//        }
+//
+//        for(int i=0;i<pickups.length;i++){
+//            int pickup = pickups[i];
+//            if(pickup != 0) pStack.add(new Work(i+1, pickup));
+//        }
+//
+//        while(!(dStack.isEmpty() && pStack.isEmpty())){
+//            int dDist = !dStack.isEmpty() ? dStack.peek().dist : 0;
+//            int pDist = !pStack.isEmpty() ? pStack.peek().dist : 0;
+//            dist += Math.max(dDist, pDist)*2;
+//
+//            int dCap = cap;
+//            while(!dStack.isEmpty()){
+//                Work now = dStack.pop();
+//
+//                if(now.count > dCap){
+//                    dStack.add(new Work(now.dist, now.count-dCap));
+//                    dCap=0;
+//                }else if(now.count <= dCap){
+//                    dCap -= now.count;
+//                }
+//
+//                if(dCap ==0) break;
+//            }
+//
+//            int pCap=cap;
+//            while(!pStack.isEmpty()){
+//                Work now = pStack.pop();
+//
+//                if(now.count > pCap){
+//                    pStack.add(new Work(now.dist, now.count-pCap));
+//                    pCap=0;
+//                }else if(now.count <= pCap){
+//                    pCap -= now.count;
+//                }
+//                if(pCap ==0) break;
+//            }
+//
+//        }
+//        return dist;
+//    }
+//}
+

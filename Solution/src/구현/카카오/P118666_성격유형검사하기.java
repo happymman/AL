@@ -55,3 +55,37 @@ public class P118666_성격유형검사하기 {
         return answer;
     }
 }
+
+
+/*
+2차풀이
+map.get() -> key값이 없을수도 있나?
+ */
+//import java.util.*;
+//
+//class Solution {
+//
+//    public String solution(String[] survey, int[] choices) {
+//        Map<String, Integer> type = new HashMap<>();
+//        for(int i=0;i<choices.length;i++){
+//            int choice = choices[i];
+//
+//            String type1 = survey[i].split("")[0];
+//            String type2 = survey[i].split("")[1];
+//
+//            if(choice >= 5){
+//                type.put(type2, type.getOrDefault(type2,0)+choice-4);
+//            }else if(choice <= 3){
+//                type.put(type1, type.getOrDefault(type1,0)+4-choice);
+//            }
+//        }
+//
+//        String rt = type.getOrDefault("R",0) >= type.getOrDefault("T",0) ? "R" : "T";
+//        String cf = type.getOrDefault("C",0) >= type.getOrDefault("F",0) ? "C" : "F";
+//        String jm = type.getOrDefault("J",0) >= type.getOrDefault("M",0) ? "J" : "M";
+//        String an = type.getOrDefault("A",0) >= type.getOrDefault("N",0) ? "A" : "N";
+//        String answer = rt+cf+jm+an;
+//        return answer;
+//    }
+//
+//}
