@@ -1,0 +1,55 @@
+"""
+    818~, ~907, 911
+    문제분석
+        1.상태정의
+            위치 + 벽부셨는지 여부 + 이동횟수
+        2.행동
+            상하좌우 이동 + 벽 부수기
+    3차원으로 생각해보기
+    똑같은 BFS인데, 벽부쉈는지 여부에 따라서 1층, 2층여부가 달라지는
+    한번 2층으로 올라가면, 1층으로는 못올라감.
+    이런 개념인 상태에서, BFS로 최단거리 구하기
+    857 출력오류
+    913 시간복잡도 O(V+E) -> O(NM)
+"""
+import sys
+input = sys.stdin.readline
+
+from collections import deque
+
+dir = [[1,0],[0,1],[-1,0],[0,-1]]
+n,m = map(int, input().split())
+
+maps = [list(map(int, input().strip())) for _ in range(n)]
+visited = [[[False] * 2 for _ in range(m)] for _ in range(n)]
+
+def bfs(sx,sy) :
+    
+    q = deque()
+    q.append([sx,sy,0,1])
+    
+    while q :
+        x,y,crash,move = q.popleft() #crash : 벽 부섰는지 여부, move : 이동횟수
+
+        if x==n-1 and y==m-1 : #목표 도달검사
+            print(move)
+            exit()
+
+        for i in range(4) :
+            nx, ny = x+dir[i][0], y+dir[i][1]
+
+            if 0<= nx < n and 0<= ny < m : #범위검사
+                if maps[nx][ny] == 0 : #벽안부수고 이동 가능한 경우
+                    # print(str(x)+' '+str(y)+' '+str(crash)+' '+str(move)+' '+str(nx)+' '+str(ny))
+                    if visited[nx][ny][crash] : continue
+                    visited[nx][ny][crash] = True
+
+                    q.append([nx, ny, crash, move+1])
+                else : #벽부셔야 이동 가능한 경우 Q.벽부셔야 이동가능한 상황에서 벽을 안부수는 경우의수도 있지 않나? -> 이미지 생각하기(좌표 이동을 하는 가정하에는 벽을 무조건 부셔야함)
+                    if crash ==1 : continue #벽 이미 부신 상태
+                    if visited[nx][ny][crash] : continue #이게 맞나? 그림이 잘 안그려진다.
+                                                         #아직도 이게 헷갈린다. 같은 좌표 다른 상태 그림을 떠올리니 해결된듯하다. 다른 상태이니, 3차원 방문배열을 통해, 방문허용(1층에 있는 그림 + 2층에 있는 그림)
+                    visited[nx][ny][crash] = True
+                    q.append([nx, ny, 1, move+1])
+bfs(0,0)
+print(-1)
