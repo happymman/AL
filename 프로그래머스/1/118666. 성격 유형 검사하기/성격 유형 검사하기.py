@@ -1,6 +1,6 @@
 """
-    813
-    -829
+    17m
+    'NA' -> split('')(X : 이런문법 없음), list('NA') & ''.join(리스트)하거나 하는식
 """
 import math
 from collections import defaultdict
