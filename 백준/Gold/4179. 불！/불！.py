@@ -1,61 +1,52 @@
-"""
-    940
-    bfs
-    탈출조건 : 미로가장자리 도달
-    불 -> X : 벽
-
-
-    시간복잡도 : O(V+E) = V : 10의 6승
-"""
-import sys
-input = sys.stdin.readline
 from collections import deque
 
-r, c = map(int, input().split()) #입력받기
- 
-maps = [list(input().strip()) for _ in range(r)] #입력받기
-d = [[0] * c for _ in range(r)]
-dir = [[1,0],[0,1],[-1,0],[0,-1]]
+dx, dy = [[-1,1,0,0],[0,0,-1,1]]
 
+def printmap() :
+    for row in maps :
+        print(*row)
+    print()
 
 def bfs() :
-
-    while q : 
-        x, y = q.popleft()
+    while q :
+        cx, cy = q.popleft() #원소꺼내기
+        
+        # printmap()
 
         for i in range(4) :
-            nx, ny = x + dir[i][0] , y + dir[i][1]
+            nx, ny = cx+dx[i], cy+dy[i]
 
-            if not(0<= nx < r and 0<= ny < c) : #목표도달검사
-                if maps[x][y] == 'J' : #지훈인 경우
-                    print(d[x][y] + 1)
-                    exit()
-                else : #불인 경우
-                    continue
+            if maps[cx][cy] == 'J' and not(0<= nx < r and 0<= ny < c) : #목표도달검사 - 지훈이가 가장자리에 도달하면
+                print(d[cx][cy]+1)
+                exit()
 
-            if maps[x][y] == 'J' : #지훈
-                if maps[nx][ny] == '#' or maps[nx][ny] == 'F' or maps[nx][ny] == 'J' : continue #유효성검사 &방문검사
-                maps[nx][ny] = 'J'
-                d[nx][ny] = d[x][y] + 1 #거리 등록
-                q.append((nx, ny))
-                
-            else : #불
-                if maps[nx][ny] == '#' or maps[nx][ny] == 'F' : continue #유효성검사 &방문검사
-                maps[nx][ny] = 'F'
-                q.append((nx, ny))
+            if 0<= nx < r and 0<= ny < c: #범위검사
+                if (maps[nx][ny] == 'J' or maps[nx][ny] == '.') and maps[cx][cy] == 'F' : #불 유효성+방문검사
+                    maps[nx][ny] = 'F' 
+                    q.append((nx, ny)) #전이
 
-q = deque()
+                elif (maps[nx][ny] == '.') and maps[cx][cy] == 'J' : #지훈 유효성+방문검사
+                    maps[nx][ny] = 'J'
+                    d[nx][ny] = d[cx][cy] + 1
+                    q.append((nx, ny))  #전이
+
+
+r, c = map(int, input().split())
+maps = [list(input()) for _ in range(r)]
+d = [[0]*c for _ in range(r)] #d : 거리배열
+
+q= deque()
 
 for i in range(r) :
     for j in range(c) :
-        if maps[i][j] == 'J' :
+        if maps[i][j] == 'J' : #지훈이를 큐에 먼저넣음
             q.append((i,j))
 
 for i in range(r) :
     for j in range(c) :
-        if maps[i][j] == 'F' :
+        if maps[i][j] == 'F' : #불을 나중에 큐에 넣음
             q.append((i,j))
 
 bfs()
-print('IMPOSSIBLE')
 
+print("IMPOSSIBLE")
