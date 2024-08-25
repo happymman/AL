@@ -1,30 +1,35 @@
 import sys
 import heapq
 
-n = int(input())
-left = []   # 중간값을 포함한 이전 값 최대힙
-right = []  # 중간값 이후의 값 최소힙
+left = [] #left : 중간값 미만 pq
+right = [] #right : 중간값 이상 pq
 
-for i in range(n):
-    x = int(sys.stdin.readline())
+n = int(input()) #입력받기
 
-    # left가 비어있거나
-    # 현재 입력값이 left에서 제일 작은 값보다 작거나 같으면
-    if len(left) == 0 or -left[0] >= x:
-        heapq.heappush(left, -x)
-    else:
-        heapq.heappush(right, x)
+for _ in range(n) : #n번 숫자 입력받기
+    num = int(sys.stdin.readline()) #num : 입력값
 
-    # left가 right에 1을 더한 것보다 더 길면
-    if len(left) > len(right) + 1:
-        # left에서 제일 큰 값을 빼서 right에 넣습니다.
-        temp = -heapq.heappop(left)
-        heapq.heappush(right, temp)
-    # right가 left보다 길면
-    elif len(right) > len(left):
-        # right에서 제일 작은 값을 빼서 left에 넣습니다.
-        temp = heapq.heappop(right)
-        heapq.heappush(left, -temp)
+    if right and right[0] > num : #중간값보다 작다
+        heapq.heappush(left, -num) #왼쪽pq에 넣기
+        # print(1)
+    else : #중간값보다 같거나크다 - 일단 이 조건으로 해보기 
+        heapq.heappush(right , num) #오른pq에 넣기
+        # print(2)
+    
+    #크기조정
+    if len(right) >= len(left)+3 : #오른쪽이 3개더많으면
+        #오른pq뽑아서 왼pq넣기(-전환해서)
+        tmp = heapq.heappop(right)
+        heapq.heappush(left, -tmp)
+        # print("왼쪽으로 옮기기")
 
-    # 중간값은 최대힙에서 제일 큰 값입니다.
-    print(-left[0])
+    elif len(left) == len(right) : #왼쪽이랑 같으면
+        #왼pq뽑아서 오른pq넣기(-전환해서)
+        tmp = heapq.heappop(left)
+        heapq.heappush(right, -tmp)
+        # print("오른쪽으로 옮기기")
+
+    # print(left)
+    # print(right)
+    print(right[0]) #새로운 중간값 말하기(왼pq peek값)
+    # print()
