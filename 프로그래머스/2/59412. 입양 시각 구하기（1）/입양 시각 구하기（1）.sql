@@ -14,12 +14,3 @@ where extract(hour from datetime) >= 9
     and extract(hour from datetime) <= 19
 group by extract(hour from datetime)
 order by extract(hour from datetime)
-
-
-
-
-
-
-
-
-
