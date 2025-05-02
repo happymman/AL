@@ -9,18 +9,23 @@
 # group by price_group
 # order by price_group asc;
 
-select case when price<10000 then 0
-        else floor(price/10000)*10000
-        end as price_group
-        , count(*) as products
+# select case when price<10000 then 0
+#         else floor(price/10000)*10000
+#         end as price_group
+#         , count(*) as products
+# from product
+# group by price_group
+# order by price_group
+
+
+
+select case when price >= 10000 then floor(price/10000)*10000
+    else 0
+    end as price_group,
+    count(*) as products
 from product
 group by price_group
 order by price_group
-
-        
-
-
-
 
 
 
