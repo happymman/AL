@@ -27,15 +27,29 @@
 # order by food_type desc
 
 
+# select ri.food_type, ri.rest_id, ri.rest_name, ri.favorites
+# from rest_info ri
+# join 
+#     (select food_type, max(favorites) as favorites
+#     from rest_info
+#     group by food_type) rm
+#     on ri.food_type = rm.food_type
+#         and ri.favorites = rm.favorites
+# order by ri.food_type desc
+
 select ri.food_type, ri.rest_id, ri.rest_name, ri.favorites
-from rest_info ri
-join 
-    (select food_type, max(favorites) as favorites
-    from rest_info
+from rest_info as ri
+join (select food_type, max(favorites) as favorites
+    from rest_info as ri
     group by food_type) rm
+    
     on ri.food_type = rm.food_type
         and ri.favorites = rm.favorites
+group by ri.food_type
 order by ri.food_type desc
+
+
+
 
 
 
