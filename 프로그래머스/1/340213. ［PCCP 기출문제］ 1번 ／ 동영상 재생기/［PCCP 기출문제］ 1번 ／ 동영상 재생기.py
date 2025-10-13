@@ -4,10 +4,10 @@
 """
 def solution(video_len_param, pos_param, op_start_param, op_end_param, commands):
     
-    video_len = convert(video_len_param)
-    pos=convert(pos_param)
-    op_start=convert(op_start_param)
-    op_end=convert(op_end_param)
+    video_len = time2second(video_len_param)
+    pos=time2second(pos_param)
+    op_start=time2second(op_start_param)
+    op_end=time2second(op_end_param)
 
     if op_start<=pos<op_end : pos = op_end #오프닝여부검사
         
@@ -22,13 +22,12 @@ def solution(video_len_param, pos_param, op_start_param, op_end_param, commands)
             else : pos+=10
             
             if op_start<=pos<op_end : pos = op_end #오프닝여부검사
-    return d(pos)
+    return second2time(pos)
 
-def convert(timeStr) :
-    return int(timeStr.split(':')[0])*60+int(timeStr.split(':')[1])
-def d(time) :
-    mm = str(time//60) if time//60>=10 else '0'+str(time//60)
-    ss = str(time%60) if time%60>=10 else '0'+str(time%60)
-    
-    return mm+':'+ss
+def time2second(timeStr) :
+    mm, ss = map(int,timeStr.split(':'))
+    return mm*60+ss
+def second2time(time):
+    mm,ss=divmod(time,60)
+    return f'{mm:02d}:{ss:02d}'
     
