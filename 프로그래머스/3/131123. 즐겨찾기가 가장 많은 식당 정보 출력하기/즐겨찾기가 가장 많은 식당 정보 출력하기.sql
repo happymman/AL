@@ -52,19 +52,7 @@ select ri.food_type, ri.rest_id, ri.rest_name, ri.favorites
 from rest_info ri
 join (select food_type, max(favorites) as favorites
       from rest_info
-      group by food_type
-    )rf
-on ri.food_type=rf.food_type
-    and ri.favorites=rf.favorites
-group by ri.food_type
+      group by food_type)rf on ri.food_type=rf.food_type
+                            and ri.favorites=rf.favorites
+# group by ri.food_type
 order by ri.food_type desc
-
-
-
-
-
-
-
-
-
-
